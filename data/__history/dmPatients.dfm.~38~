@@ -1,0 +1,301 @@
+object dmPatints: TdmPatints
+  OnCreate = DataModuleCreate
+  Height = 634
+  Width = 366
+  object fQryPatients: TFDQuery
+    Active = True
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT * FROM Patients')
+    Left = 104
+    Top = 24
+    object fQryPatientsId: TFDAutoIncField
+      FieldName = 'Id'
+      Origin = 'Id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object fQryPatientsFirstName: TWideStringField
+      FieldName = 'FirstName'
+      Origin = 'FirstName'
+      Required = True
+      Size = 100
+    end
+    object fQryPatientsLastName: TWideStringField
+      FieldName = 'LastName'
+      Origin = 'LastName'
+      Required = True
+      Size = 100
+    end
+    object fQryPatientsGender: TWideStringField
+      FieldName = 'Gender'
+      Origin = 'Gender'
+      Size = 10
+    end
+    object fQryPatientsNationalCode: TStringField
+      FieldName = 'NationalCode'
+      Origin = 'NationalCode'
+      Size = 10
+    end
+    object fQryPatientsBirthYear: TIntegerField
+      FieldName = 'BirthYear'
+      Origin = 'BirthYear'
+    end
+    object fQryPatientsBirthMonth: TByteField
+      FieldName = 'BirthMonth'
+      Origin = 'BirthMonth'
+      MaxValue = 12
+      MinValue = 1
+    end
+    object fQryPatientsBirthDay: TByteField
+      FieldName = 'BirthDay'
+      Origin = 'BirthDay'
+      MaxValue = 31
+      MinValue = 1
+    end
+    object fQryPatientsCity: TWideStringField
+      FieldName = 'City'
+      Origin = 'City'
+      Size = 100
+    end
+    object fQryPatientsAddress: TWideStringField
+      FieldName = 'Address'
+      Origin = 'Address'
+      Size = 300
+    end
+    object fQryPatientsIncomeDecile: TByteField
+      FieldName = 'IncomeDecile'
+      Origin = 'IncomeDecile'
+    end
+    object fQryPatientsIsLowIncome: TBooleanField
+      FieldName = 'IsLowIncome'
+      Origin = 'IsLowIncome'
+    end
+    object fQryPatientsInsuranceTypeId: TIntegerField
+      FieldName = 'InsuranceTypeId'
+      Origin = 'InsuranceTypeId'
+    end
+    object fQryPatientsSupportTypeId: TIntegerField
+      FieldName = 'SupportTypeId'
+      Origin = 'SupportTypeId'
+    end
+    object fQryPatientsDisorderTypeId: TIntegerField
+      FieldName = 'DisorderTypeId'
+      Origin = 'DisorderTypeId'
+    end
+    object fQryPatientsNotes: TWideMemoField
+      FieldName = 'Notes'
+      Origin = 'Notes'
+      BlobType = ftWideMemo
+      Size = 2147483647
+    end
+    object fQryPatientsProvinceId: TIntegerField
+      FieldName = 'ProvinceId'
+      Origin = 'ProvinceId'
+    end
+  end
+  object fQryPatientFamilyMembers: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT * FROM PatientFamilyMembers'
+      'ORDER BY PatientId')
+    Left = 104
+    Top = 88
+  end
+  object fQryIranProvinces: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT ProvinceID AS Id,ProvinceName FROM IranProvinces;')
+    Left = 104
+    Top = 152
+    object fQryIranProvincesId: TFDAutoIncField
+      FieldName = 'Id'
+      ReadOnly = True
+    end
+    object fQryIranProvincesProvinceName: TWideStringField
+      FieldName = 'ProvinceName'
+      Required = True
+      Size = 50
+    end
+  end
+  object fQryInsuranceTypes: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT [Id]'
+      '      ,[InsuranceName]'
+      '  FROM [AutiSys].[dbo].[InsuranceTypes]')
+    Left = 104
+    Top = 232
+    object fQryInsuranceTypesId: TFDAutoIncField
+      FieldName = 'Id'
+      Origin = 'Id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object fQryInsuranceTypesInsuranceName: TWideStringField
+      FieldName = 'InsuranceName'
+      Origin = 'InsuranceName'
+      Required = True
+      Size = 100
+    end
+  end
+  object fQrySupportTypes: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT [Id]'
+      '      ,[SupportName]'
+      '  FROM [AutiSys].[dbo].[SupportTypes]')
+    Left = 104
+    Top = 296
+    object fQrySupportTypesId: TFDAutoIncField
+      FieldName = 'Id'
+      Origin = 'Id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object fQrySupportTypesSupportName: TWideStringField
+      FieldName = 'SupportName'
+      Origin = 'SupportName'
+      Required = True
+      Size = 100
+    end
+  end
+  object fQryDisorderTypes: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT [Id]'
+      '      ,[DisorderName]'
+      '  FROM [AutiSys].[dbo].[DisorderTypes]')
+    Left = 104
+    Top = 360
+    object fQryDisorderTypesId: TFDAutoIncField
+      FieldName = 'Id'
+      Origin = 'Id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object fQryDisorderTypesDisorderName: TWideStringField
+      FieldName = 'DisorderName'
+      Origin = 'DisorderName'
+      Required = True
+      Size = 100
+    end
+  end
+  object fQryParents: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT * FROM [AutiSys].[dbo].[Parents]'
+      'ORDER BY PatientId')
+    Left = 104
+    Top = 424
+    object fQryParentsId: TFDAutoIncField
+      FieldName = 'Id'
+      Origin = 'Id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object fQryParentsPatientId: TIntegerField
+      FieldName = 'PatientId'
+      Origin = 'PatientId'
+      Required = True
+    end
+    object fQryParentsParentTypeId: TIntegerField
+      FieldName = 'ParentTypeId'
+      Origin = 'ParentTypeId'
+      Required = True
+    end
+    object fQryParentsFirstName: TWideStringField
+      FieldName = 'FirstName'
+      Origin = 'FirstName'
+      Required = True
+      Size = 100
+    end
+    object fQryParentsLastName: TWideStringField
+      FieldName = 'LastName'
+      Origin = 'LastName'
+      Required = True
+      Size = 100
+    end
+    object fQryParentsAge: TByteField
+      FieldName = 'Age'
+      Origin = 'Age'
+    end
+    object fQryParentsNationalCode: TStringField
+      FieldName = 'NationalCode'
+      Origin = 'NationalCode'
+      Size = 10
+    end
+    object fQryParentsJob: TWideStringField
+      FieldName = 'Job'
+      Origin = 'Job'
+      Size = 100
+    end
+    object fQryParentsMonthlyIncome: TFMTBCDField
+      FieldName = 'MonthlyIncome'
+      Origin = 'MonthlyIncome'
+      Precision = 18
+      Size = 2
+    end
+    object fQryParentsPhone: TStringField
+      FieldName = 'Phone'
+      Origin = 'Phone'
+      Size = 30
+    end
+    object fQryParentsWorkAddress: TWideStringField
+      FieldName = 'WorkAddress'
+      Origin = 'WorkAddress'
+      Size = 300
+    end
+    object fQryParentsHasDisorder: TBooleanField
+      FieldName = 'HasDisorder'
+      Origin = 'HasDisorder'
+    end
+    object fQryParentsDisorderTypeId: TIntegerField
+      FieldName = 'DisorderTypeId'
+      Origin = 'DisorderTypeId'
+    end
+    object fQryParentsNotes: TWideMemoField
+      FieldName = 'Notes'
+      Origin = 'Notes'
+      BlobType = ftWideMemo
+      Size = 2147483647
+    end
+  end
+  object fdQryParentTypes: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT * FROM [AutiSys].[dbo].[ParentTypes]')
+    Left = 104
+    Top = 488
+    object fdQryParentTypesId: TFDAutoIncField
+      FieldName = 'Id'
+      Origin = 'Id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object fdQryParentTypesTypeName: TWideStringField
+      FieldName = 'TypeName'
+      Origin = 'TypeName'
+      Required = True
+      Size = 50
+    end
+  end
+  object fQryPatientNames: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT id,FirstName+'#39' '#39'+LastName as FullName FROM Patients'
+      'ORDER BY FirstName,LastName')
+    Left = 104
+    Top = 560
+    object fQryPatientNamesid: TFDAutoIncField
+      FieldName = 'id'
+      ReadOnly = True
+    end
+    object fQryPatientNamesFullName: TWideStringField
+      FieldName = 'FullName'
+      ReadOnly = True
+      Required = True
+      Size = 201
+    end
+  end
+end

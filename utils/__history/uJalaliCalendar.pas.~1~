@@ -1,0 +1,146 @@
+unit uJalaliCalendar;
+
+{--------------------------------------------------------------------
+   Unit   : JalaliCalendar
+   Author : Bertina LLM (Bertina Co.)
+   Date   : 2026-04-05
+   Purpose: تبدیل تاریخ شمسی (Jalaali) به Gregorian و بالعکس.
+   Note   : این کد بر پایه الگوریتم‌های رایج (دومین صفحهٔ «Jalaali
+            Calendar» در Wikipedia و کتاب‌های مرجع) ساخته شده است
+            و برای سال‌های 1300 … 1499 قابل استفاده است.
+--------------------------------------------------------------------}
+
+interface
+
+uses
+  System.SysUtils, System.DateUtils, System.Classes;
+
+type
+  { یک ریکارد ساده برای نگه‌داشتن تاریخ شمسی }
+  TJalaliDate = record
+    Year, Month, Day: Integer;
+  end;
+
+{---------------------------------------------
+  تبدیل تاریخ شمسی به Gregorian (TDateTime)
+---------------------------------------------}
+function JalaaliToDate(JYear, JMonth, JDay: Integer): TDateTime;
+
+{---------------------------------------------
+  تبدیل Gregorian (TDateTime) به تاریخ شمسی
+---------------------------------------------}
+procedure DateToJalaali(ADate: TDateTime; out JYear, JMonth, JDay: Integer);
+
+implementation
+
+{=====================================================================
+  CONSTANTS
+=====================================================================}
+const
+  { Julian day of 1 Farvardin 1 (1395) – 19/03/2016 Gregorian }
+  JalaaliEpoch = 1948320;          { 1 Farvardin 1  (1/1/1) }
+
+{=====================================================================
+  HELPER – CALCULATE JULIAN DAY NUMBER FROM JALALI DATE
+=====================================================================}
+function JalaaliToJulianDay(jy, jm, jd: Integer): Int64;
+var
+  epBase, epYear: Int64;
+  daysInMonth: Int64;
+begin
+  epBase := jy - (if jy >= 0 then 474 else 473);
+  epYear := 474 + (epBase mod 2820);
+
+  if jm <= 7 then
+    daysInMonth := (jm - 1) * 31
+  else
+    daysInMonth := ((jm - 1) * 30 + 6);
+
+  Result := jd + daysInMonth
+            + (epYear * 682 - 110) div 2816
+            + (epYear - 1) * 365
+            + (epBase div 2820) * 1029983
+            + JalaaliEpoch - 1;
+end;
+
+{=====================================================================
+  HELPER – CONVERT JULIAN DAY NUMBER TO GREGORIAN DATE
+=====================================================================}
+procedure JulianDayToGregorian(jd: Int64; out gy, gm, gd: Integer);
+var
+  l, n, i, j, k: Int64;
+begin
+  l := jd + 68569;
+  n := 4 * l div 146097;
+  l := l - (146097 * n + 3) div 4;
+  i := 4000 * (l + 1) div 1461001;
+  l := l - 1461 * i div 4 + 31;
+  j := 80 * l div 2447;
+  gd := l - 2447 * j div 80;
+  l := j div 11;
+  gm := j + 2 - 12 * l;
+  gy := 100 * (n - 49) + i + l;
+end;
+
+{=====================================================================
+  HELPER – CONVERT JULIAN DAY NUMBER TO JALALI DATE
+=====================================================================}
+procedure JulianDayToJalaali(jd: Int64; out jy, jm, jd2: Integer);
+var
+  depoch, cycle, cyear, yday: Int64;
+  dayOfYear: Int64;
+begin
+  depoch := jd - JalaaliEpoch;
+  cycle := depoch div 1029983;
+  cyear := depoch mod 1029983;
+
+  if cyear = 1029982 then
+    yday := 2820
+  else
+    yday := (cyear div 366) * 365 + (cyear mod 366) div 5;
+
+  jy := 474 + cycle * 2820 + yday div 1028522;
+  yday := yday mod 1028522;
+  yday := yday div 365 + 1;
+  jy := jy + yday - 1;
+
+  { Day of year (1‑based) }
+  dayOfYear := jd - JalaaliToJulianDay(jy, 1, 1) + 1;
+
+  if dayOfYear <= 186 then
+  begin
+    jm := (dayOfYear - 1) div 31 + 1;
+    jd2 := dayOfYear - (jm - 1) * 31;
+  end
+  else
+  begin
+    jm := (dayOfYear - 187) div 30 + 7;
+    jd2 := dayOfYear - (186 + (jm - 7) * 30);
+  end;
+end;
+
+{=====================================================================
+  PUBLIC API – JALALI → TDateTime
+=====================================================================}
+function JalaaliToDate(JYear, JMonth, JDay: Integer): TDateTime;
+var
+  jd: Int64;
+begin
+  jd := JalaaliToJulianDay(JYear, JMonth, JDay);
+  { Convert Julian Day to Delphi TDateTime (days since 12/30/1899) }
+  Result := EncodeDate(1970, 1, 1) + (jd - 2440588);
+end;
+
+{=====================================================================
+  PUBLIC API – TDateTime → JALALI
+=====================================================================}
+procedure DateToJalaali(ADate: TDateTime; out JYear, JMonth, JDay: Integer);
+var
+  jd: Int64;
+begin
+  { TDateTime has 1 day = 1. 12/30/1899 is Julian Day 2415020 }
+  jd := Trunc(ADate) + 2415020;
+  JulianDayToJalaali(jd, JYear, JMonth, JDay);
+end;
+
+end.

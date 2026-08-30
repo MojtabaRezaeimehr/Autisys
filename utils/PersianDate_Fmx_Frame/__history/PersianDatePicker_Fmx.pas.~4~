@@ -1,0 +1,54 @@
+unit PersianDatePicker_Fmx;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.ListBox;
+
+type
+  TDatePickerFrame = class(TFrame)
+    cbYear: TComboBox;
+    cbMonth: TComboBox;
+    cbDay: TComboBox;
+    procedure FramePaint(Sender: TObject; Canvas: TCanvas; const ARect: TRectF);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.fmx}
+
+procedure TDatePickerFrame.FramePaint(Sender: TObject; Canvas: TCanvas;
+  const ARect: TRectF);
+var
+  I: Integer;
+begin
+  self.Width := 230;
+  cbYear.Items.Clear;
+  cbMonth.Items.Clear;
+  cbDay.Items.Clear;
+  for I := 1300 to 1420 do
+  begin
+    cbYear.Items.Add(IntToStr(I));
+  end;
+  for I := 1 to 12 do
+  begin
+    cbMonth.Items.Add(IntToStr(I));
+  end;
+  for I := 1 to 31 do
+  begin
+    cbDay.Items.Add(IntToStr(I));
+  end;
+
+end;
+procedure Register;
+begin
+  RegisterComponents('My Frames', [TMyFrame]);
+end;
+end.

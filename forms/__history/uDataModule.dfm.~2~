@@ -1,0 +1,17 @@
+object DataModule1: TDataModule1
+  Height = 480
+  Width = 640
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'SERVER=127.0.0.1'
+      'User_Name=sa'
+      'Password=amf@sql2022'
+      'OSAuthent=No'
+      'ApplicationName=Enterprise/Architect/Ultimate'
+      'Workstation=DESKTOP-DOJR006'
+      'Database=AutiSys'
+      'DriverID=MSSQL')
+    Left = 136
+    Top = 72
+  end
+end

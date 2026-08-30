@@ -1,0 +1,11 @@
+object DataModule2: TDataModule2
+  Height = 243
+  Width = 292
+  object fdQryMembers: TFDQuery
+    Connection = DataModule1.FdServerConnection
+    SQL.Strings = (
+      'SELECT * FROM Patients')
+    Left = 128
+    Top = 24
+  end
+end

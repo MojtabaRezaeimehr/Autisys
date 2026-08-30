@@ -1,0 +1,97 @@
+unit Main;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Edit,
+  FMX.StdCtrls, FMX.Controls.Presentation, dmPatients;
+
+type
+  TfMainScreen = class(TForm)
+    Panel1: TPanel;
+    btnNewMember: TButton;
+    btnNewTransaction: TButton;
+    btnNewSession: TButton;
+    btnReports: TButton;
+    grpNationalCode: TGroupBox;
+    lblNationalCode: TLabel;
+    btnSearch: TButton;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Label1: TLabel;
+    Edit2: TEdit;
+    Panel4: TPanel;
+    lblPouyeshha: TLabel;
+    Edit3: TEdit;
+    Panel5: TPanel;
+    Label3: TLabel;
+    edtAllTransactions: TEdit;
+    Panel6: TPanel;
+    Label4: TLabel;
+    edtNewMembersCount: TEdit;
+    btnExit: TButton;
+    Panel8: TPanel;
+    Panel7: TPanel;
+    lblSpacer: TLabel;
+    edtNationalCode: TEdit;
+    procedure btnExitClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure btnSearchClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fMainScreen: TfMainScreen;
+
+implementation
+
+{$R *.fmx}
+
+uses uProfile;
+
+procedure TfMainScreen.btnExitClick(Sender: TObject);
+begin
+  // if MessageDlg('', TMsgDlgType.mtConfirmation,
+  // [mbYes, mbNo],0) = mrYes then
+  Application.Terminate;
+
+end;
+
+procedure TfMainScreen.btnSearchClick(Sender: TObject);
+var sNationalCode,sQry:string;
+begin
+//  Application.CreateForm(Tdmpatient, dmPatients);
+  sNationalCode:=Trim(edtNationalCode);
+  if sNationalCode<>'' then
+   begin
+      sQry:='SELECT Id FROM Patients WHERE NationalCode=:NationalCode';
+
+   end;
+  with TfProfile.create(self) do
+  begin
+    showmodal;
+    free;
+  end;
+end;
+
+procedure TfMainScreen.FormResize(Sender: TObject);
+begin
+  // Use 'Self' or just the property name directly.
+  // Do not use the global variable name 'fMainScreen' inside the form class.
+  lblSpacer.Width := Self.Width / 5;
+  // OR simply:
+  // lblSpacer.Width := Width / 5;
+end;
+
+procedure TfMainScreen.FormShow(Sender: TObject);
+begin
+  edtNationalCode.SetFocus;
+end;
+
+end.

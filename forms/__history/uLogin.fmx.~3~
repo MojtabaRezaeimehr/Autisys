@@ -1,0 +1,152 @@
+object fLogin: TfLogin
+  Left = 0
+  Top = 0
+  Caption = 'V'
+  ClientHeight = 220
+  ClientWidth = 417
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Panel1: TPanel
+    Align = Top
+    Size.Width = 417.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object Label1: TLabel
+      Align = Right
+      StyledSettings = [FontColor]
+      Position.X = 336.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 72.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'IRANSansWebFaNum'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = #1606#1575#1605' '#1705#1575#1585#1576#1585#1740
+      TabOrder = 1
+    end
+    object eUserName: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Client
+      TabOrder = 2
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Size.Width = 316.000000000000000000
+      Size.Height = 52.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object Panel2: TPanel
+    Align = Top
+    Position.Y = 72.000000000000000000
+    Size.Width = 417.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Label2: TLabel
+      Align = Right
+      StyledSettings = [FontColor]
+      Position.X = 336.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 72.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'IRANSansWebFaNum'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = #1705#1604#1605#1607' '#1593#1576#1608#1585
+      TabOrder = 1
+    end
+    object Edit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Client
+      TabOrder = 2
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Size.Width = 316.000000000000000000
+      Size.Height = 52.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object Panel3: TPanel
+    Align = Client
+    Size.Width = 417.000000000000000000
+    Size.Height = 76.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object GridPanelLayout1: TGridPanelLayout
+      Align = Client
+      Size.Width = 417.000000000000000000
+      Size.Height = 76.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ColumnCollection = <
+        item
+          Value = 50.000000000000000000
+        end
+        item
+          Value = 50.000000000000000000
+        end>
+      ControlCollection = <
+        item
+          Column = 0
+          Control = btnExit
+          Row = 0
+        end
+        item
+          Column = 1
+          Control = btnLogin
+          Row = 0
+        end>
+      RowCollection = <
+        item
+          Value = 100.000000000000000000
+        end>
+      object btnExit: TButton
+        Align = Client
+        StyledSettings = [FontColor]
+        Padding.Left = 10.000000000000000000
+        Padding.Top = 10.000000000000000000
+        Padding.Right = 10.000000000000000000
+        Padding.Bottom = 10.000000000000000000
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Size.Width = 188.500000000000000000
+        Size.Height = 56.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = #1575#1606#1589#1585#1575#1601
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+      end
+      object btnLogin: TButton
+        Align = Client
+        StyledSettings = [FontColor]
+        Padding.Left = 10.000000000000000000
+        Padding.Top = 10.000000000000000000
+        Padding.Right = 10.000000000000000000
+        Padding.Bottom = 10.000000000000000000
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Size.Width = 188.500000000000000000
+        Size.Height = 56.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = #1608#1585#1608#1583
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+      end
+    end
+  end
+end

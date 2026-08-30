@@ -1,0 +1,131 @@
+object dmAccounting_: TdmAccounting_
+  OnCreate = DataModuleCreate
+  Height = 423
+  Width = 346
+  object fQryTransactionTypes: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT [Id]'
+      '      ,[Title]'
+      '  FROM [AutiSys].[dbo].[TransactionTypes]')
+    Left = 64
+    Top = 24
+  end
+  object fQryTransactions: TFDQuery
+    Active = True
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM [dbo].[Transactions]')
+    Left = 56
+    Top = 96
+    object fQryTransactionsId: TFDAutoIncField
+      FieldName = 'Id'
+      Origin = 'Id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object fQryTransactionsPatientId: TIntegerField
+      FieldName = 'PatientId'
+      Origin = 'PatientId'
+    end
+    object fQryTransactionsPaymentDate_Year: TIntegerField
+      FieldName = 'PaymentDate_Year'
+      Origin = 'PaymentDate_Year'
+    end
+    object fQryTransactionsPaymentDate_Month: TIntegerField
+      FieldName = 'PaymentDate_Month'
+      Origin = 'PaymentDate_Month'
+    end
+    object fQryTransactionsPaymentDate_Day: TIntegerField
+      FieldName = 'PaymentDate_Day'
+      Origin = 'PaymentDate_Day'
+    end
+    object fQryTransactionsAmount: TIntegerField
+      FieldName = 'Amount'
+      Origin = 'Amount'
+    end
+    object fQryTransactionsTransactionType_Id: TIntegerField
+      FieldName = 'TransactionType_Id'
+      Origin = 'TransactionType_Id'
+    end
+    object fQryTransactionsNotes: TWideMemoField
+      FieldName = 'Notes'
+      Origin = 'Notes'
+      BlobType = ftWideMemo
+      Size = 2147483647
+    end
+  end
+  object fQryTransactionsRep: TFDQuery
+    Active = True
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT T.[Id]'
+      '      ,[PatientId]'
+      '      ,P.FirstName+ '#39' '#39' + P.LastName AS PatientFullName'
+      '      ,Cast([PaymentDate_Year] AS VARCHAR(4))+'#39'/'#39
+      '      +Cast([PaymentDate_Month] AS VARCHAR(4))+'#39'/'#39
+      '      +Cast([PaymentDate_Day] AS VARCHAR(4)) AS PaymentDate'
+      '      ,[Amount]'
+      '      ,[TransactionType_Id]'
+      '      ,TT.Title'
+      '      ,T.[Notes]'
+      '  FROM [AutiSys].[dbo].[Transactions] T'
+      '  LEFT JOIN Patients P ON T.PatientId = P.Id'
+      '  LEFT JOIN TransactionTypes TT ON T.TransactionType_Id = TT.Id')
+    Left = 56
+    Top = 176
+    object fQryTransactionsRepId: TFDAutoIncField
+      FieldName = 'Id'
+      Origin = 'Id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+      Visible = False
+    end
+    object fQryTransactionsRepPatientId: TIntegerField
+      FieldName = 'PatientId'
+      Origin = 'PatientId'
+      Visible = False
+    end
+    object fQryTransactionsRepPatientFullName: TWideStringField
+      DisplayLabel = #1606#1575#1605' '#1578#1608#1575#1606#1580#1608
+      DisplayWidth = 25
+      FieldName = 'PatientFullName'
+      Origin = 'PatientFullName'
+      ReadOnly = True
+      Size = 201
+    end
+    object fQryTransactionsRepTitle: TWideStringField
+      DisplayLabel = #1605#1608#1590#1608#1593' '#1662#1585#1583#1575#1582#1578#1740
+      DisplayWidth = 25
+      FieldName = 'Title'
+      Origin = 'Title'
+      Size = 50
+    end
+    object fQryTransactionsRepAmount: TIntegerField
+      DisplayLabel = #1605#1576#1604#1594
+      FieldName = 'Amount'
+      Origin = 'Amount'
+    end
+    object fQryTransactionsRepTransactionType_Id: TIntegerField
+      FieldName = 'TransactionType_Id'
+      Origin = 'TransactionType_Id'
+      Visible = False
+    end
+    object fQryTransactionsRepPaymentDate: TStringField
+      DisplayLabel = #1578#1575#1585#1740#1582
+      FieldName = 'PaymentDate'
+      Origin = 'PaymentDate'
+      ReadOnly = True
+      Size = 14
+    end
+    object fQryTransactionsRepNotes: TWideMemoField
+      DisplayLabel = #1578#1608#1590#1740#1581#1575#1578
+      DisplayWidth = 20
+      FieldName = 'Notes'
+      Origin = 'Notes'
+      BlobType = ftWideMemo
+      Size = 2147483647
+    end
+  end
+end

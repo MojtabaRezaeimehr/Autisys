@@ -1,0 +1,45 @@
+object Frame1: TFrame1
+  Size.Width = 230.000000000000000000
+  Size.Height = 38.000000000000000000
+  Size.PlatformDefault = False
+  OnPaint = FramePaint
+  object cbYear: TComboBox
+    Items.Strings = (
+      '1300'
+      '1301'
+      '1302')
+    ItemIndex = 0
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 81.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+  end
+  object cbMonth: TComboBox
+    Items.Strings = (
+      '1'
+      '2'
+      '3')
+    ItemIndex = 0
+    Position.X = 97.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 57.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+  end
+  object cbDay: TComboBox
+    Items.Strings = (
+      '1'
+      '2'
+      '3')
+    ItemIndex = 0
+    Position.X = 162.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 57.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+  end
+end

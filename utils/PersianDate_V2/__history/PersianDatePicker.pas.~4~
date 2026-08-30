@@ -1,0 +1,398 @@
+﻿unit PersianDatePicker;
+
+interface
+
+uses
+  System.SysUtils, System.Classes,
+  FMX.Types, FMX.Controls, FMX.Layouts, FMX.StdCtrls, FMX.ListBox, FMX.Edit;
+
+type
+  TPersianDatePicker = class(TCustomPanel)
+  private
+    FYearCombo: TComboBox;
+    FMonthCombo: TComboBox;
+    FDayCombo: TComboBox;
+    FYear: Integer;
+    FMonth: Integer;
+    FDay: Integer;
+    FOnChange: TNotifyEvent;
+    FUseFullMonthNames: Boolean;
+    FLabelYear: TLabel;
+    FLabelMonth: TLabel;
+    FLabelDay: TLabel;
+
+    procedure SetYear(Value: Integer);
+    procedure SetMonth(Value: Integer);
+    procedure SetDay(Value: Integer);
+    procedure SetUseFullMonthNames(Value: Boolean);
+
+    procedure YearComboChange(Sender: TObject);
+    procedure MonthComboChange(Sender: TObject);
+    procedure DayComboChange(Sender: TObject);
+
+    function GetPersianDate: string;
+    procedure SetPersianDate(const Value: string);
+
+    function IsLeapYear(Year: Integer): Boolean;
+    function GetMonthDays(Year, Month: Integer): Integer;
+    procedure UpdateDayCombo;
+    procedure PopulateCombos;
+
+  protected
+    procedure DoChange; virtual;
+    procedure Loaded; override;
+    procedure SetParent(AParent: TWinControl); override;
+
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+
+    procedure SetCurrentDate;
+    procedure Clear;
+
+    property PersianDate: string read GetPersianDate write SetPersianDate;
+
+  published
+    property Year: Integer read FYear write SetYear;
+    property Month: Integer read FMonth write SetMonth;
+    property Day: Integer read FDay write SetDay;
+    property UseFullMonthNames: Boolean read FUseFullMonthNames write SetUseFullMonthNames default False;
+    property OnChange: TNotifyEvent read FOnChange write FOnChange;
+
+    // Standard TPanel properties
+    property Align;
+    property Alignment;
+    property BevelInner;
+    property BevelOuter;
+    property BevelWidth;
+    property BorderWidth;
+    property BorderStyle;
+    property Color;
+    property Ctl3D;
+    property UseCustomFont: Boolean read FUseFullMonthNames write SetUseFullMonthNames;
+    property Enabled;
+    property Font;
+    property ParentColor;
+    property ParentCtl3D;
+    property ParentFont;
+    property ParentShowHint;
+    property ShowHint;
+    property TabOrder;
+    property TabStop;
+    property Visible;
+  end;
+
+procedure Register;
+
+implementation
+
+const
+  PersianMonthNames: array[1..12] of string = (
+    'فروردین', 'اردیبهشت', 'خرداد', 'تیر',
+    'مرداد', 'شهریور', 'مهر', 'آبان',
+    'آذر', 'دی', 'بهمن', 'اسفند'
+  );
+
+  PersianMonthNamesFull: array[1..12] of string = (
+    'فروردین', 'اردیبهشت', 'خرداد', 'تیر',
+    'مرداد', 'شهریور', 'مهر', 'آبان',
+    'آذر', 'دی', 'بهمن', 'اسفند'
+  );
+
+{ TPersianDatePicker }
+
+constructor TPersianDatePicker.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+
+  // Panel settings
+  Width := 350;
+  Height := 30;
+  BevelOuter := bvNone;
+  Color := clBtnFace;
+
+  // Create Year ComboBox
+  FYearCombo := TComboBox.Create(Self);
+  FYearCombo.Parent := Self;
+  FYearCombo.Style := csDropDownList;
+  FYearCombo.Left := 0;
+  FYearCombo.Top := 4;
+  FYearCombo.Width := 80;
+  FYearCombo.Height := 22;
+  FYearCombo.OnChange := YearComboChange;
+
+  // Create Month ComboBox
+  FMonthCombo := TComboBox.Create(Self);
+  FMonthCombo.Parent := Self;
+  FMonthCombo.Style := csDropDownList;
+  FMonthCombo.Left := 85;
+  FMonthCombo.Top := 4;
+  FMonthCombo.Width := 90;
+  FMonthCombo.Height := 22;
+  FMonthCombo.OnChange := MonthComboChange;
+
+  // Create Day ComboBox
+  FDayCombo := TComboBox.Create(Self);
+  FDayCombo.Parent := Self;
+  FDayCombo.Style := csDropDownList;
+  FDayCombo.Left := 180;
+  FDayCombo.Top := 4;
+  FDayCombo.Width := 70;
+  FDayCombo.Height := 22;
+  FDayCombo.OnChange := DayComboChange;
+
+  // Create Labels
+  FLabelYear := TLabel.Create(Self);
+  FLabelYear.Parent := Self;
+  FLabelYear.Caption := 'سال:';
+  FLabelYear.Left := 0;
+  FLabelYear.Top := -2;
+  FLabelYear.Visible := False;
+
+  FLabelMonth := TLabel.Create(Self);
+  FLabelMonth.Parent := Self;
+  FLabelMonth.Caption := 'ماه:';
+  FLabelMonth.Left := 85;
+  FLabelMonth.Top := -2;
+  FLabelMonth.Visible := False;
+
+  FLabelDay := TLabel.Create(Self);
+  FLabelDay.Parent := Self;
+  FLabelDay.Caption := 'روز:';
+  FLabelDay.Left := 180;
+  FLabelDay.Top := -2;
+  FLabelDay.Visible := False;
+
+  FUseFullMonthNames := False;
+  FYear := 1400;
+  FMonth := 1;
+  FDay := 1;
+
+  PopulateCombos;
+end;
+
+destructor TPersianDatePicker.Destroy;
+begin
+  FYearCombo.Free;
+  FMonthCombo.Free;
+  FDayCombo.Free;
+  FLabelYear.Free;
+  FLabelMonth.Free;
+  FLabelDay.Free;
+  inherited Destroy;
+end;
+
+procedure TPersianDatePicker.Loaded;
+begin
+  inherited Loaded;
+  PopulateCombos;
+end;
+
+procedure TPersianDatePicker.SetParent(AParent: TWinControl);
+begin
+  inherited SetParent(AParent);
+  if AParent <> nil then
+  begin
+    FYearCombo.Parent := Self;
+    FMonthCombo.Parent := Self;
+    FDayCombo.Parent := Self;
+  end;
+end;
+
+function TPersianDatePicker.IsLeapYear(Year: Integer): Boolean;
+var
+  R: Integer;
+begin
+  // Persian leap year calculation
+  // A year is leap if remainder when divided by 33 is in {1, 5, 9, 13, 17, 22, 26, 30}
+  R := Year mod 33;
+  Result := (R = 1) or (R = 5) or (R = 9) or (R = 13) or
+            (R = 17) or (R = 22) or (R = 26) or (R = 30);
+end;
+
+function TPersianDatePicker.GetMonthDays(Year, Month: Integer): Integer;
+begin
+  if Month <= 6 then
+    Result := 31
+  else if Month <= 11 then
+    Result := 30
+  else // Month = 12
+    if IsLeapYear(Year) then
+      Result := 30
+    else
+      Result := 29;
+end;
+
+procedure TPersianDatePicker.UpdateDayCombo;
+var
+  I, MaxDays: Integer;
+  CurrentDay: Integer;
+begin
+  CurrentDay := FDayCombo.ItemIndex + 1;
+  MaxDays := GetMonthDays(FYear, FMonth);
+
+  FDayCombo.Items.Clear;
+  for I := 1 to MaxDays do
+    FDayCombo.Items.Add(IntToStr(I));
+
+  if CurrentDay > MaxDays then
+    CurrentDay := MaxDays;
+
+  if FDayCombo.Items.Count > 0 then
+    FDayCombo.ItemIndex := CurrentDay - 1;
+
+  FDay := FDayCombo.ItemIndex + 1;
+end;
+
+procedure TPersianDatePicker.PopulateCombos;
+var
+  I: Integer;
+begin
+  // Populate Year
+  FYearCombo.Items.Clear;
+  for I := 1300 to 1500 do
+    FYearCombo.Items.Add(IntToStr(I));
+  FYearCombo.ItemIndex := FYear - 1300;
+
+  // Populate Month
+  FMonthCombo.Items.Clear;
+  for I := 1 to 12 do
+  begin
+    if FUseFullMonthNames then
+      FMonthCombo.Items.Add(PersianMonthNamesFull[I])
+    else
+      FMonthCombo.Items.Add(IntToStr(I));
+  end;
+  FMonthCombo.ItemIndex := FMonth - 1;
+
+  // Populate Day
+  UpdateDayCombo;
+end;
+
+procedure TPersianDatePicker.SetYear(Value: Integer);
+begin
+  if (Value >= 1300) and (Value <= 1500) then
+  begin
+    FYear := Value;
+    if FYearCombo.Items.Count > 0 then
+      FYearCombo.ItemIndex := FYear - 1300;
+    UpdateDayCombo;
+    DoChange;
+  end;
+end;
+
+procedure TPersianDatePicker.SetMonth(Value: Integer);
+begin
+  if (Value >= 1) and (Value <= 12) then
+  begin
+    FMonth := Value;
+    if FMonthCombo.Items.Count > 0 then
+      FMonthCombo.ItemIndex := FMonth - 1;
+    UpdateDayCombo;
+    DoChange;
+  end;
+end;
+
+procedure TPersianDatePicker.SetDay(Value: Integer);
+var
+  MaxDays: Integer;
+begin
+  MaxDays := GetMonthDays(FYear, FMonth);
+  if (Value >= 1) and (Value <= MaxDays) then
+  begin
+    FDay := Value;
+    if FDayCombo.Items.Count > 0 then
+      FDayCombo.ItemIndex := FDay - 1;
+    DoChange;
+  end;
+end;
+
+procedure TPersianDatePicker.SetUseFullMonthNames(Value: Boolean);
+begin
+  FUseFullMonthNames := Value;
+  PopulateCombos;
+end;
+
+procedure TPersianDatePicker.YearComboChange(Sender: TObject);
+begin
+  if FYearCombo.ItemIndex >= 0 then
+  begin
+    FYear := FYearCombo.ItemIndex + 1300;
+    UpdateDayCombo;
+    DoChange;
+  end;
+end;
+
+procedure TPersianDatePicker.MonthComboChange(Sender: TObject);
+begin
+  if FMonthCombo.ItemIndex >= 0 then
+  begin
+    FMonth := FMonthCombo.ItemIndex + 1;
+    UpdateDayCombo;
+    DoChange;
+  end;
+end;
+
+procedure TPersianDatePicker.DayComboChange(Sender: TObject);
+begin
+  if FDayCombo.ItemIndex >= 0 then
+  begin
+    FDay := FDayCombo.ItemIndex + 1;
+    DoChange;
+  end;
+end;
+
+procedure TPersianDatePicker.DoChange;
+begin
+  if Assigned(FOnChange) then
+    FOnChange(Self);
+end;
+
+function TPersianDatePicker.GetPersianDate: string;
+begin
+  Result := Format('%.4d/%.2d/%.2d', [FYear, FMonth, FDay]);
+end;
+
+procedure TPersianDatePicker.SetPersianDate(const Value: string);
+var
+  Y, M, D: Integer;
+begin
+  if TryStrToInt(Copy(Value, 1, 4), Y) and
+     TryStrToInt(Copy(Value, 6, 2), M) and
+     TryStrToInt(Copy(Value, 9, 2), D) then
+  begin
+    SetYear(Y);
+    SetMonth(M);
+    SetDay(D);
+  end;
+end;
+
+procedure TPersianDatePicker.SetCurrentDate;
+var
+  SystemTime: TSystemTime;
+begin
+  GetLocalTime(SystemTime);
+  // Note: This is a simplified conversion. For accurate conversion,
+  // you would need a proper Persian calendar conversion library
+  FYear := 1403; // Example default
+  FMonth := 1;
+  FDay := 1;
+  PopulateCombos;
+  DoChange;
+end;
+
+procedure TPersianDatePicker.Clear;
+begin
+  FYear := 1300;
+  FMonth := 1;
+  FDay := 1;
+  PopulateCombos;
+  DoChange;
+end;
+
+procedure Register;
+begin
+  RegisterComponents('Persian', [TPersianDatePicker]);
+end;
+
+end.

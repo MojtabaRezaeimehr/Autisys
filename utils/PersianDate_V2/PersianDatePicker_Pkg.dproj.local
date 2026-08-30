@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/06/12 09:25:09.000.778,=rtl.dcp</Transaction>
+    <Transaction>2026/03/18 07:03:52.000.879,=rtl.dcp</Transaction>
+    <Transaction>2026/04/11 19:26:00.299,=rtl.dcp</Transaction>
+    <Transaction>2026/04/11 19:26:58.038,=C:\PROGRAMS\Mojtaba\Programing\Delphi\AutiSys\utils\PersianDate_V2\PersianDatePicker.pas</Transaction>
+    <Transaction>2026/04/11 19:27:31.019,C:\PROGRAMS\Mojtaba\Programing\Delphi\AutiSys\utils\PersianDate_V2\PersianDatePicker_Pkg.dproj=C:\Users\Mojtaba\OneDrive\Documents\Embarcadero\Studio\Projects\Package1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

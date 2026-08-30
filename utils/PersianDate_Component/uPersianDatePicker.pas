@@ -1,0 +1,422 @@
+﻿unit uPersianDatePicker;
+
+interface
+
+uses
+  System.SysUtils, System.Classes,
+  FMX.Types, FMX.Controls, FMX.Layouts, FMX.StdCtrls, FMX.ListBox, FMX.Edit;
+
+type
+  TPersianDatePicker = class(TLayout)
+  private
+    FYearCombo: TComboBox;
+    FMonthCombo: TComboBox;
+    FDayCombo: TComboBox;
+    FYearEdit: TEdit;
+    FUpdating: Boolean;
+    FOnDateChange: TNotifyEvent;
+    procedure FillYears;
+    procedure FillMonths;
+    procedure FillDays;
+    procedure DoYearChange(Sender: TObject);
+    procedure DoMonthChange(Sender: TObject);
+    procedure DoDayChange(Sender: TObject);
+    function IsLeapYear(AYear: Word): Boolean;
+    function GetDate: TDateTime;
+    procedure SetDate(AValue: TDateTime);
+    procedure DoDateChange;
+    procedure DateToJalaali(ADate: TDateTime; var Year, Month, Day: Integer);
+    function JalaaliToDate(Year, Month, Day: Integer): TDateTime;
+    function GetYear: Integer;
+    function GetMonth: Integer;
+    function GetDay: Integer;
+    procedure SetYearValue(intYear: Integer);
+    procedure SetMonthValue(intMonth: Integer);
+    procedure SetDayValue(intDay: Integer);
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+    procedure SetToday;
+    property Date: TDateTime read GetDate write SetDate;
+    property Year: Integer read GetYear write SetYearValue;
+    property Month: Integer read GetMonth write SetMonthValue;
+    property Day: Integer read GetDay write SetDayValue;
+  published
+    property OnDateChange: TNotifyEvent read FOnDateChange write FOnDateChange;
+  end;
+
+procedure Register;
+
+implementation
+
+uses
+  System.DateUtils;
+
+{ TPersianDatePicker }
+
+constructor TPersianDatePicker.Create(AOwner: TComponent);
+var
+  I: Integer;
+begin
+  inherited Create(AOwner);
+  FUpdating := False;
+  Width := 300;
+  Height := 32;
+  HitTest := True;
+  Self.Repaint;
+
+  // Create Year ComboBox
+  FYearCombo := TComboBox.Create(Self);
+  FYearCombo.Parent := Self;
+  FYearCombo.Width := 90;
+  FYearCombo.Position.X := 2;
+  FYearCombo.Position.Y := 2;
+//  FYearCombo.StyleLookup := 'comboboxstyle'; // یا هر استایلی که می‌خواید
+//  FYearCombo.DropDownStyle := TComboBoxStyle.DropDownList;
+
+  FYearCombo.OnChange := DoYearChange;
+
+  // Create Month ComboBox
+  FMonthCombo := TComboBox.Create(Self);
+  FMonthCombo.Parent := Self;
+  FMonthCombo.Width := 60;
+  FMonthCombo.Position.X := 106;
+  FMonthCombo.Position.Y := 2;
+  FMonthCombo.OnChange := DoMonthChange;
+
+  // Create Day ComboBox
+  FDayCombo := TComboBox.Create(Self);
+  FDayCombo.Parent := Self;
+  FDayCombo.Width := 60;
+  FDayCombo.Position.X := 171;
+  FDayCombo.Position.Y := 2;
+  FDayCombo.OnChange := DoDayChange;
+
+  FillYears;
+  FillMonths;
+  FillDays;
+  SetToday;
+end;
+
+destructor TPersianDatePicker.Destroy;
+begin
+  FYearCombo.DisposeOf;
+  FMonthCombo.DisposeOf;
+  FDayCombo.DisposeOf;
+  inherited;
+end;
+
+procedure TPersianDatePicker.SetToday;
+begin
+  SetDate(Now);
+end;
+
+procedure TPersianDatePicker.SetYearValue(intYear: Integer);
+var
+  Idx: Integer;
+begin
+  if FUpdating then
+    Exit;
+  FUpdating := True;
+  try
+    Idx := FYearCombo.Items.IndexOf(IntToStr(intYear));
+    if Idx >= 0 then
+    begin
+      FYearCombo.ItemIndex := Idx;
+      FillDays;
+      DoDateChange;
+    end;
+  finally
+    FYearCombo.Repaint; // یا FYearCombo.Invalidate;
+    self.Repaint;
+    FUpdating := False;
+  end;
+end;
+
+
+procedure TPersianDatePicker.SetMonthValue(intMonth: Integer);
+begin
+  if FUpdating then
+    Exit;
+  if (intMonth >= 1) and (intMonth <= 12) then
+  begin
+    FUpdating := True;
+    try
+      FMonthCombo.ItemIndex := intMonth - 1;
+      FillDays;
+      DoDateChange;
+    finally
+      FUpdating := False;
+      FYearCombo.Repaint;
+      FMonthCombo.Repaint;
+      FDayCombo.Repaint;
+    end;
+  end;
+end;
+
+procedure TPersianDatePicker.SetDayValue(intDay: Integer);
+var
+  MaxDay: Integer;
+  Y, M: Integer;
+begin
+  if FUpdating then
+    Exit;
+  if FDayCombo.ItemIndex < 0 then
+    Exit;
+
+  Y := StrToInt(FYearCombo.Items[FYearCombo.ItemIndex]);
+  M := FMonthCombo.ItemIndex + 1;
+
+  if M <= 6 then
+    MaxDay := 31
+  else if M <= 11 then
+    MaxDay := 30
+  else
+    MaxDay := 29 + Ord(IsLeapYear(Y));
+
+  if (intDay >= 1) and (intDay <= MaxDay) then
+  begin
+    FUpdating := True;
+    try
+      FDayCombo.ItemIndex := intDay - 1;
+      DoDateChange;
+    finally
+      FUpdating := False;
+      FYearCombo.Repaint;
+      FMonthCombo.Repaint;
+      FDayCombo.Repaint;
+    end;
+  end;
+end;
+
+function TPersianDatePicker.GetYear: Integer;
+begin
+  if FYearCombo.ItemIndex >= 0 then
+    Result := StrToInt(FYearCombo.Items[FYearCombo.ItemIndex])
+  else
+    Result := 0;
+end;
+
+function TPersianDatePicker.GetMonth: Integer;
+begin
+  if FMonthCombo.ItemIndex >= 0 then
+    Result := FMonthCombo.ItemIndex + 1
+  else
+    Result := 0;
+end;
+
+function TPersianDatePicker.GetDay: Integer;
+begin
+  if FDayCombo.ItemIndex >= 0 then
+    Result := FDayCombo.ItemIndex + 1
+  else
+    Result := 0;
+end;
+
+procedure TPersianDatePicker.DoDateChange;
+begin
+  if Assigned(FOnDateChange) then
+    FOnDateChange(Self);
+end;
+
+procedure TPersianDatePicker.DoYearChange(Sender: TObject);
+begin
+  if FUpdating then
+    Exit;
+  FillDays;
+  DoDateChange;
+end;
+
+procedure TPersianDatePicker.DoMonthChange(Sender: TObject);
+begin
+  if FUpdating then
+    Exit;
+  FillDays;
+  DoDateChange;
+end;
+
+procedure TPersianDatePicker.DoDayChange(Sender: TObject);
+begin
+  if FUpdating then
+    Exit;
+  DoDateChange;
+end;
+
+procedure TPersianDatePicker.DateToJalaali(ADate: TDateTime;
+  var Year, Month, Day: Integer);
+var
+  jd, depoch, cycle, cyear, ycycle: Integer;
+  mm, dayOfYear: Integer;
+const
+  JALALI_EPOCH = 1948321;
+begin
+  jd := Trunc(ADate) + 32044;
+  depoch := jd - JALALI_EPOCH;
+  cycle := depoch div 1029983;
+  cyear := depoch mod 1029983;
+  if cyear = 1029982 then
+    cycle := cycle + 1;
+  ycycle := 2826 * cycle + 1108;
+  if cyear < 366 then
+  begin
+    ycycle := ycycle + (cyear div 365);
+    cyear := cyear mod 365;
+  end;
+  Year := ycycle + 474;
+  if Year <= 0 then
+    Year := Year - 1;
+  dayOfYear := (cycle * 366) + cyear;
+  mm := (dayOfYear div 120) + 3;
+  Month := mm mod 12 + 1;
+  Day := (dayOfYear mod 365) + 1;
+end;
+
+function TPersianDatePicker.JalaaliToDate(Year, Month, Day: Integer): TDateTime;
+var
+  jd, depoch, cycle, cyear, ycycle: Integer;
+  mm: Integer;
+const
+  JALALI_EPOCH = 1948321;
+begin
+  if Year <= 0 then
+    Year := Year + 1;
+  depoch := (Year - 474) div 2820 * 1029983 + (Year - 474) mod 2820 * 365 - 1;
+  cycle := depoch div 1029983;
+  cyear := depoch mod 1029983;
+  if cyear = 1029982 then
+    cycle := cycle + 1;
+  ycycle := 2826 * cycle + 1108;
+  if cyear < 366 then
+  begin
+    ycycle := ycycle + (cyear div 365);
+    cyear := cyear mod 365;
+  end;
+  jd := JALALI_EPOCH + 365 * (Year - 474) + (ycycle div 2820) * 1029983
+    + ycycle;
+  mm := (Month - 1) div 6 + 4;
+  jd := jd + (Month - 1) * 31 - (mm div 12) * (Month - 1);
+  jd := jd + Day - 1;
+  Result := jd - 32044;
+end;
+
+procedure TPersianDatePicker.FillYears;
+begin
+  if FUpdating then
+    Exit;
+  FUpdating := True;
+  try
+    FYearCombo.Items.Clear;
+    for var Y := 1300 to 1500 do
+      FYearCombo.Items.Add(IntToStr(Y));
+    if FYearCombo.Items.Count > 0 then
+      FYearCombo.ItemIndex := 0;
+  finally
+    FUpdating := False;
+  end;
+end;
+
+procedure TPersianDatePicker.FillMonths;
+begin
+  if FUpdating then
+    Exit;
+  FUpdating := True;
+  try
+    FMonthCombo.Items.Clear;
+    for var M := 1 to 12 do
+      FMonthCombo.Items.Add(IntToStr(M));
+    if FMonthCombo.Items.Count > 0 then
+      FMonthCombo.ItemIndex := 0;
+  finally
+    FUpdating := False;
+  end;
+end;
+
+procedure TPersianDatePicker.FillDays;
+var
+  MaxDay: Integer;
+  Y, M, D: Integer;
+begin
+  if FUpdating then
+    Exit;
+  FUpdating := True;
+  try
+    FDayCombo.Items.Clear;
+    if FYearCombo.ItemIndex < 0 then
+      Exit;
+    if FMonthCombo.ItemIndex < 0 then
+      Exit;
+    Y := StrToInt(FYearCombo.Items[FYearCombo.ItemIndex]);
+    M := FMonthCombo.ItemIndex + 1;
+
+    if M <= 6 then
+      MaxDay := 31
+    else if M <= 11 then
+      MaxDay := 30
+    else
+      MaxDay := 29 + Ord(IsLeapYear(Y));
+
+    for D := 1 to MaxDay do
+      FDayCombo.Items.Add(IntToStr(D));
+    if FDayCombo.Items.Count > 0 then
+      FDayCombo.ItemIndex := 0;
+  finally
+    FUpdating := False;
+  end;
+end;
+
+function TPersianDatePicker.IsLeapYear(AYear: Word): Boolean;
+var
+  Pos: Integer;
+begin
+  Pos := (AYear - 1) mod 33;
+  Result := (Pos = 1) or (Pos = 5) or (Pos = 9) or (Pos = 13) or (Pos = 17) or
+    (Pos = 22) or (Pos = 26) or (Pos = 30);
+end;
+
+function TPersianDatePicker.GetDate: TDateTime;
+var
+  Y, M, D: Integer;
+begin
+  if (FYearCombo.ItemIndex < 0) or (FMonthCombo.ItemIndex < 0) or
+    (FDayCombo.ItemIndex < 0) then
+  begin
+    Result := Now;
+    Exit;
+  end;
+  Y := StrToInt(FYearCombo.Items[FYearCombo.ItemIndex]);
+  M := FMonthCombo.ItemIndex + 1;
+  D := FDayCombo.ItemIndex + 1;
+  Result := JalaaliToDate(Y, M, D);
+end;
+
+procedure TPersianDatePicker.SetDate(AValue: TDateTime);
+var
+  Y, M, D: Integer;
+  Idx: Integer;
+begin
+  if FUpdating then
+    Exit;
+  FUpdating := True;
+  try
+    DateToJalaali(AValue, Y, M, D);
+
+    Idx := FYearCombo.Items.IndexOf(IntToStr(Y));
+    if Idx >= 0 then
+      FYearCombo.ItemIndex := Idx;
+
+    if (M >= 1) and (M <= 12) then
+      FMonthCombo.ItemIndex := M - 1;
+
+    if (D >= 1) and (D <= 31) then
+      FDayCombo.ItemIndex := D - 1;
+  finally
+    FUpdating := False;
+  end;
+end;
+
+procedure Register;
+begin
+  RegisterComponents('Persian', [TPersianDatePicker]);
+end;
+
+end.

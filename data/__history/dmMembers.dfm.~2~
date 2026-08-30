@@ -1,0 +1,9 @@
+object DataModule2: TDataModule2
+  Height = 260
+  Width = 305
+  object fdQryMembers: TFDQuery
+    Connection = DataModule1.FdServerConnection
+    Left = 128
+    Top = 88
+  end
+end

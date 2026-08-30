@@ -1,0 +1,9 @@
+object dmMembers: TdmMembers
+  Height = 300
+  Width = 347
+  object FDTable1: TFDTable
+    Connection = DataModule1.FdServerConnection
+    Left = 136
+    Top = 96
+  end
+end

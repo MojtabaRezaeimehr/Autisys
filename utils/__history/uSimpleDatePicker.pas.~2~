@@ -1,0 +1,215 @@
+unit uSimpleDatePicker;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FMX.Types, FMX.Controls, FMX.StdCtrls
+  ,  FMX.Layouts,  FMX.ListBox, FMX.Edit;
+
+type
+  TSimpleDatePicker = class(TObject)
+  private
+    FYearCombo: TComboBox;
+    FMonthCombo: TComboBox;
+    FDayCombo: TComboBox;
+    FUpdating: Boolean;
+    procedure FillYears;
+    procedure FillMonths;
+    procedure FillDays;
+    function GetYear: Integer;
+    function GetMonth: Integer;
+    function GetDay: Integer;
+    procedure SetYear(const Value: Integer);
+    procedure SetMonth(const Value: Integer);
+    procedure SetDay(const Value: Integer);
+    procedure DoDateChange;
+  public
+    constructor Create(AOwner: TComponent);
+    destructor Destroy; override;
+    property Year: Integer read GetYear write SetYear;
+    property Month: Integer read GetMonth write SetMonth;
+    property Day: Integer read GetDay write SetDay;
+    property OnDateChange: TNotifyEvent read FOnDateChange write FOnDateChange;
+  private
+    FOnDateChange: TNotifyEvent;
+  end;
+
+implementation
+
+{ TSimpleDatePicker }
+
+constructor TSimpleDatePicker.Create(AOwner: TComponent);
+begin
+  inherited Create;
+  FUpdating := False;
+  FYearCombo := TComboBox.Create(nil);
+  FMonthCombo := TComboBox.Create(nil);
+  FDayCombo := TComboBox.Create(nil);
+
+  FillYears;
+  FillMonths;
+  FillDays;
+end;
+
+destructor TSimpleDatePicker.Destroy;
+begin
+  FYearCombo.Free;
+  FMonthCombo.Free;
+  FDayCombo.Free;
+  inherited Destroy;
+end;
+
+procedure TSimpleDatePicker.FillYears;
+var
+  i: Integer;
+begin
+  FYearCombo.Items.Clear;
+  for i := 1300 to 1450 do
+    FYearCombo.Items.Add(IntToStr(i));
+  if FYearCombo.Items.Count > 0 then
+    FYearCombo.ItemIndex := 0;
+end;
+
+procedure TSimpleDatePicker.FillMonths;
+var
+  i: Integer;
+begin
+  FMonthCombo.Items.Clear;
+  for i := 1 to 12 do
+    FMonthCombo.Items.Add(IntToStr(i));
+  if FMonthCombo.Items.Count > 0 then
+    FMonthCombo.ItemIndex := 0;
+end;
+
+procedure TSimpleDatePicker.FillDays;
+var
+  i: Integer;
+  MaxDay: Integer;
+  Y, M: Integer;
+begin
+  FDayCombo.Items.Clear;
+  if FYearCombo.ItemIndex < 0 then
+    Exit;
+  if FMonthCombo.ItemIndex < 0 then
+    Exit;
+
+  Y := StrToInt(FYearCombo.Items[FYearCombo.ItemIndex]);
+  M := FMonthCombo.ItemIndex + 1;
+
+  if M <= 6 then
+    MaxDay := 31
+  else if M <= 11 then
+    MaxDay := 30
+  else
+    MaxDay := 29 + Ord(True); // فرض می‌کنیم سال کبیسه نیست
+
+  for i := 1 to MaxDay do
+    FDayCombo.Items.Add(IntToStr(i));
+  if FDayCombo.Items.Count > 0 then
+    FDayCombo.ItemIndex := 0;
+end;
+
+function TSimpleDatePicker.GetYear: Integer;
+begin
+  if FYearCombo.ItemIndex < 0 then
+    Result := 1300
+  else
+    Result := StrToInt(FYearCombo.Items[FYearCombo.ItemIndex]);
+end;
+
+function TSimpleDatePicker.GetMonth: Integer;
+begin
+  if FMonthCombo.ItemIndex < 0 then
+    Result := 1
+  else
+    Result := FMonthCombo.ItemIndex + 1;
+end;
+
+function TSimpleDatePicker.GetDay: Integer;
+begin
+  if FDayCombo.ItemIndex < 0 then
+    Result := 1
+  else
+    Result := FDayCombo.ItemIndex + 1;
+end;
+
+procedure TSimpleDatePicker.SetYear(const Value: Integer);
+var
+  Idx: Integer;
+begin
+  if FUpdating then
+    Exit;
+  FUpdating := True;
+  try
+    Idx := FYearCombo.Items.IndexOf(IntToStr(Value));
+    if Idx >= 0 then
+    begin
+      FYearCombo.ItemIndex := Idx;
+      FillDays;
+      DoDateChange;
+    end;
+  finally
+    FYearCombo.Repaint;
+    FUpdating := False;
+  end;
+end;
+
+procedure TSimpleDatePicker.SetMonth(const Value: Integer);
+begin
+  if FUpdating then
+    Exit;
+  if (Value >= 1) and (Value <= 12) then
+  begin
+    FUpdating := True;
+    try
+      FMonthCombo.ItemIndex := Value - 1;
+      FillDays;
+      DoDateChange;
+    finally
+      FMonthCombo.Repaint;
+      FUpdating := False;
+    end;
+  end;
+end;
+
+procedure TSimpleDatePicker.SetDay(const Value: Integer);
+var
+  MaxDay: Integer;
+  Y, M: Integer;
+begin
+  if FUpdating then
+    Exit;
+  if FDayCombo.ItemIndex < 0 then
+    Exit;
+
+  Y := StrToInt(FYearCombo.Items[FYearCombo.ItemIndex]);
+  M := FMonthCombo.ItemIndex + 1;
+
+  if M <= 6 then
+    MaxDay := 31
+  else if M <= 11 then
+    MaxDay := 30
+  else
+    MaxDay := 29 + Ord(True); // فرض می‌کنیم سال کبیسه نیست
+
+  if (Value >= 1) and (Value <= MaxDay) then
+  begin
+    FUpdating := True;
+    try
+      FDayCombo.ItemIndex := Value - 1;
+      DoDateChange;
+    finally
+      FDayCombo.Repaint;
+      FUpdating := False;
+    end;
+  end;
+end;
+
+procedure TSimpleDatePicker.DoDateChange;
+begin
+  if Assigned(FOnDateChange) then
+    FOnDateChange(Self);
+end;
+
+end.
+

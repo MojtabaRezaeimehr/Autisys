@@ -1,0 +1,59 @@
+object dmAccounting_: TdmAccounting_
+  OnCreate = DataModuleCreate
+  Height = 423
+  Width = 346
+  object fQryTransactionTypes: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT [Id]'
+      '      ,[Title]'
+      '  FROM [AutiSys].[dbo].[TransactionTypes]')
+    Left = 64
+    Top = 24
+  end
+  object fQryTransactions: TFDQuery
+    Active = True
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM [dbo].[Transactions]')
+    Left = 56
+    Top = 96
+    object fQryTransactionsId: TFDAutoIncField
+      FieldName = 'Id'
+      Origin = 'Id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object fQryTransactionsPatientId: TIntegerField
+      FieldName = 'PatientId'
+      Origin = 'PatientId'
+    end
+    object fQryTransactionsPaymentDate_Year: TIntegerField
+      FieldName = 'PaymentDate_Year'
+      Origin = 'PaymentDate_Year'
+    end
+    object fQryTransactionsPaymentDate_Month: TIntegerField
+      FieldName = 'PaymentDate_Month'
+      Origin = 'PaymentDate_Month'
+    end
+    object fQryTransactionsPaymentDate_Day: TIntegerField
+      FieldName = 'PaymentDate_Day'
+      Origin = 'PaymentDate_Day'
+    end
+    object fQryTransactionsAmount: TIntegerField
+      FieldName = 'Amount'
+      Origin = 'Amount'
+    end
+    object fQryTransactionsTransactionType_Id: TIntegerField
+      FieldName = 'TransactionType_Id'
+      Origin = 'TransactionType_Id'
+    end
+    object fQryTransactionsNotes: TWideMemoField
+      FieldName = 'Notes'
+      Origin = 'Notes'
+      BlobType = ftWideMemo
+      Size = 2147483647
+    end
+  end
+end

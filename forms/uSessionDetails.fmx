@@ -1,0 +1,136 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Panel1: TPanel
+    Align = Bottom
+    Position.Y = 424.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 56.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+  end
+  object Panel2: TPanel
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 424.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Label36: TLabel
+      Anchors = [akTop, akRight]
+      StyledSettings = [FontColor]
+      Position.X = 530.000000000000000000
+      Position.Y = 83.000000000000000000
+      Size.Width = 63.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'IRANSansWebFaNum'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = #1606#1608#1593' '#1583#1585#1605#1575#1606
+      TabOrder = 42
+    end
+    object Edit17: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akTop, akRight]
+      TabOrder = 2
+      TextSettings.Font.Family = 'IRANSansWebFaNum'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Position.X = 401.000000000000000000
+      Position.Y = 45.000000000000000000
+      Size.Width = 121.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [FontColor]
+    end
+    object Label34: TLabel
+      Anchors = [akTop, akRight]
+      StyledSettings = [FontColor]
+      Position.X = 530.000000000000000000
+      Position.Y = 45.000000000000000000
+      Size.Width = 63.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'IRANSansWebFaNum'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = #1606#1575#1605' '#1583#1585#1605#1575#1606#1711#1585
+      TabOrder = 43
+    end
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akTop, akRight]
+      TabOrder = 1
+      TextSettings.Font.Family = 'IRANSansWebFaNum'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Position.X = 401.000000000000000000
+      Position.Y = 83.000000000000000000
+      Size.Width = 121.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [FontColor]
+    end
+    object GroupBox1: TGroupBox
+      Align = Bottom
+      StyledSettings = [Size, Style, FontColor, Other]
+      Position.Y = 120.000000000000000000
+      Size.Width = 640.000000000000000000
+      Size.Height = 304.000000000000000000
+      Size.PlatformDefault = False
+      Text = #1580#1604#1587#1575#1578' '#1583#1585#1605#1575#1606#1740
+      TextSettings.Font.Family = 'IRANSansWebFaNum'
+      TabOrder = 45
+      object StringGrid1: TStringGrid
+        Align = Client
+        CanFocus = True
+        ClipChildren = True
+        Margins.Left = 15.000000000000000000
+        Margins.Top = 25.000000000000000000
+        Margins.Right = 15.000000000000000000
+        Margins.Bottom = 15.000000000000000000
+        Size.Width = 610.000000000000000000
+        Size.Height = 264.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 38
+        Viewport.Width = 606.000000000000000000
+        Viewport.Height = 239.000000000000000000
+      end
+    end
+    object Label1: TLabel
+      Anchors = [akTop, akRight]
+      StyledSettings = [FontColor]
+      Position.X = 530.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 71.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'IRANSansWebFaNum'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = #1606#1575#1605' '#1578#1608#1575#1606#1582#1608#1575#1607
+      TabOrder = 44
+    end
+    object Edit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akTop, akRight]
+      TabOrder = 0
+      TextSettings.Font.Family = 'IRANSansWebFaNum'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Position.X = 401.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 121.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [FontColor]
+    end
+  end
+end

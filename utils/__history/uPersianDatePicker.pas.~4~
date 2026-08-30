@@ -1,0 +1,187 @@
+unit uPersianDatePicker;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Vcl.Controls, Vcl.StdCtrls, Vcl.Forms,
+  uJalaliCalendar;
+
+type
+  TPersianDatePicker = class(TCustomControl)
+  private
+    FYearCombo: TComboBox;
+    FMonthCombo: TComboBox;
+    FDayCombo: TComboBox;
+
+    procedure FillYears;
+    procedure FillMonths;
+    procedure FillDays;
+
+    procedure OnYearChange(Sender: TObject);
+    procedure OnMonthChange(Sender: TObject);
+
+    function IsLeapYear(AYear: Word): Boolean;
+
+    // *** متدهای خواندن/نوشتن Date ***
+    function GetDate: TDateTime;
+    procedure SetDate(AValue: TDateTime);
+
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+
+    property Date: TDateTime read GetDate write SetDate;
+  end;
+
+procedure Register;
+
+implementation
+
+uses
+ System.DateUtils;
+
+{ TPersianDatePicker }
+
+constructor TPersianDatePicker.Create(AOwner: TComponent);
+begin
+  inherited;
+  Width := 300; Height := 25;
+
+  // سال
+  FYearCombo := TComboBox.Create(Self);
+  FYearCombo.Parent := Self;
+  FYearCombo.Style := csDropDownList;
+  FYearCombo.Width := 80;
+  FYearCombo.OnChange := OnYearChange;
+
+  // ماه
+  FMonthCombo := TComboBox.Create(Self);
+  FMonthCombo.Parent := Self;
+  FMonthCombo.Style := csDropDownList;
+  FMonthCombo.Width := 50;
+  FMonthCombo.Left := FYearCombo.Width + 5;
+  FMonthCombo.OnChange := OnMonthChange;
+
+  // روز
+  FDayCombo := TComboBox.Create(Self);
+  FDayCombo.Parent := Self;
+  FDayCombo.Style := csDropDownList;
+  FDayCombo.Width := 50;
+  FDayCombo.Left := FYearCombo.Width + FMonthCombo.Width + 10;
+  FDayCombo.OnChange := OnMonthChange; // same handler to update day list
+
+  FillYears;
+  FillMonths;
+  FillDays;
+
+  // تاریخ پیش‌فرض (مثلاً امروز)
+  SetDate(Now);
+end;
+
+destructor TPersianDatePicker.Destroy;
+begin
+  FYearCombo.Free;
+  FMonthCombo.Free;
+  FDayCombo.Free;
+  inherited;
+end;
+
+procedure TPersianDatePicker.FillYears;
+var
+  Y: Word;
+begin
+  FYearCombo.Items.Clear;
+  for Y := 1320 to 1420 do
+    FYearCombo.Items.Add(IntToStr(Y));
+  FYearCombo.ItemIndex := 0; // سال اول
+end;
+
+procedure TPersianDatePicker.FillMonths;
+var
+  M: Word;
+begin
+  FMonthCombo.Items.Clear;
+  for M := 1 to 12 do
+    FMonthCombo.Items.Add(IntToStr(M));
+  FMonthCombo.ItemIndex := 0; // ماه اول
+end;
+
+procedure TPersianDatePicker.FillDays;
+var
+  MaxDay: Word;
+  Y: Word;
+  M: Word;
+begin
+  FDayCombo.Items.Clear;
+  if FMonthCombo.ItemIndex < 0 then Exit;
+  Y := StrToInt(FYearCombo.Text);
+  M := StrToInt(FMonthCombo.Text);
+
+  if M <= 6 then
+    MaxDay := 31
+  else if M <= 11 then
+    MaxDay := 30
+  else
+    MaxDay := 29 + Ord(IsLeapYear(Y)); // 30 در سال کبیسه
+
+  FDayCombo.Items.AddStrings(TStringList.Create);
+  for var D := 1 to MaxDay do
+    FDayCombo.Items.Add(IntToStr(D));
+  FDayCombo.ItemIndex := 0; // روز اول
+end;
+
+procedure TPersianDatePicker.OnYearChange(Sender: TObject);
+begin
+  FillDays; // روزها ممکن است تغییر کنند
+end;
+
+procedure TPersianDatePicker.OnMonthChange(Sender: TObject);
+begin
+  FillDays; // روزها را به‌روز کن
+end;
+
+function TPersianDatePicker.IsLeapYear(AYear: Word): Boolean;
+const
+  LeapPattern: array[0..11] of Word = (1, 5, 9, 13, 17, 22, 26, 30, 34, 38, 42, 46);
+var
+  Pos: Integer;
+begin
+  Pos := (AYear - 1) mod 33;
+  Result := (Pos = 1) or (Pos = 5) or (Pos = 9) or
+            (Pos = 13) or (Pos = 17) or (Pos = 22) or
+            (Pos = 26) or (Pos = 30);
+end;
+
+// *** متدهای خواندن/نوشتن Date ***
+
+function TPersianDatePicker.GetDate: TDateTime;
+var
+  Y, M, D: Word;
+begin
+  // تبدیل شمسی به میلادی (یا تبدیل برعکس بسته به کتابخانه)
+  Y := StrToInt(FYearCombo.Text);
+  M := StrToInt(FMonthCombo.Text);
+  D := StrToInt(FDayCombo.Text);
+  Result := System.DateUtils.JalaaliToDate(Y, M, D); // فرض بر وجود تابع
+end;
+
+procedure TPersianDatePicker.SetDate(AValue: TDateTime);
+var
+  Y, M, D: Word;
+begin
+  // تبدیل میلادی به شمسی
+  System.DateUtils.DateToJalaali(AValue, Y, M, D); // فرض بر وجود تابع
+  if FYearCombo.Items.IndexOf(IntToStr(Y)) <> -1 then
+    FYearCombo.ItemIndex := FYearCombo.Items.IndexOf(IntToStr(Y));
+  if FMonthCombo.Items.IndexOf(IntToStr(M)) <> -1 then
+    FMonthCombo.ItemIndex := FMonthCombo.Items.IndexOf(IntToStr(M));
+  if FDayCombo.Items.IndexOf(IntToStr(D)) <> -1 then
+    FDayCombo.ItemIndex := FDayCombo.Items.IndexOf(IntToStr(D));
+end;
+
+procedure Register;
+begin
+  RegisterComponents('Persian', [TPersianDatePicker]);
+end;
+
+end.

@@ -1,0 +1,23 @@
+object dmAccounting_: TdmAccounting_
+  OnCreate = DataModuleCreate
+  Height = 423
+  Width = 346
+  object fQryTransactionTypes: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT [Id]'
+      '      ,[Title]'
+      '  FROM [AutiSys].[dbo].[TransactionTypes]')
+    Left = 64
+    Top = 24
+  end
+  object FDQuery1: TFDQuery
+    Connection = dmServer_.FdServerConnection
+    SQL.Strings = (
+      'SELECT [Id]'
+      '      ,[Title]'
+      '  FROM [AutiSys].[dbo].[TransactionTypes]')
+    Left = 56
+    Top = 96
+  end
+end

@@ -1,0 +1,498 @@
+﻿unit uProfile;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Memo.Types, FMX.Layouts,
+  FMX.ScrollBox, FMX.Memo, FMX.ListBox, FMX.Edit,
+  FMX.Platform, FMX.VirtualKeyboard, Data.FMTBcd, Data.DB, Data.SqlExpr,
+  System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.Bind.Grid, System.Bindings.Outputs,
+  FMX.Bind.Editors, Data.Bind.Controls, Data.Bind.EngExt, FMX.Bind.DBEngExt,
+  Data.Bind.Components, FMX.Bind.Navigator, Data.Bind.Grid, Data.Bind.DBScope,
+  dmEvents, System.Actions, FMX.ActnList, FMX.DateTimeCtrls, uPersianDatePicker,
+  uSimpleDatePicker, uFrSimpleDatePicker;
+// <--- این یونیت اضافه شد
+
+type
+  TfProfile = class(TForm)
+    tcAllTabs: TTabControl;
+    tbGeneralInfo: TTabItem;
+    tbTherapy: TTabItem;
+    tbAccounting: TTabItem;
+    tbEducational: TTabItem;
+    tbEvents: TTabItem;
+    tcGeneralInfo: TTabControl;
+    tbPatient: TTabItem;
+    tbSession: TTabItem;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    chbxLowIncome: TCheckBox;
+    ePatientFName: TEdit;
+    eBirthYear: TEdit;
+    eBirthMonth: TEdit;
+    eBirthDay: TEdit;
+    cbIranProvinces: TComboBox;
+    cbIncomeDecade: TComboBox;
+    cbInsuranceTypes: TComboBox;
+    cbSupportTypes: TComboBox;
+    cboPatientSex: TComboBox;
+    mPatinetInfo: TMemo;
+    GridPanelLayout1: TGridPanelLayout;
+    btnCancel_Patient: TButton;
+    btnDelete_Patient: TButton;
+    btnSave_Patient: TButton;
+    btnEdit_Patient: TButton;
+    btnAdd_Patient: TButton;
+    Label15: TLabel;
+    eParentFName: TEdit;
+    Label16: TLabel;
+    eParentLname: TEdit;
+    Label17: TLabel;
+    GridPanelLayout2: TGridPanelLayout;
+    btnCancel_Parents: TButton;
+    btnDelete_Parents: TButton;
+    btnSave_Parents: TButton;
+    btnEdit_Parents: TButton;
+    btnNew_Parents: TButton;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    eParentPhone: TEdit;
+    cbParentRelation: TComboBox;
+    cbParentDisorderity: TCheckBox;
+    eParentAge: TEdit;
+    eParentNationalCode: TEdit;
+    eParentJob: TEdit;
+    eParentIncome: TEdit;
+    cbParentDisorderTypes: TComboBox;
+    Label24: TLabel;
+    ePatientLName: TEdit;
+    ePatientNationalCode: TEdit;
+    mPatientAddress: TMemo;
+    mParentWorkAddress: TMemo;
+    SQLTable1: TSQLTable;
+    tcTherapy: TTabControl;
+    tbTherapyResume: TTabItem;
+    Label25: TLabel;
+    tbNewTherapySession: TTabItem;
+    Label39: TLabel;
+    Label40: TLabel;
+    GridPanelLayout4: TGridPanelLayout;
+    btnCancel_Therapy_Session: TButton;
+    btnDelete_Therapy_Session: TButton;
+    btnSave_Therapy_Session: TButton;
+    btnEdit_Therapy_Session: TButton;
+    btnAdd_Therapy_Session: TButton;
+    Label42: TLabel;
+    Label43: TLabel;
+    Label44: TLabel;
+    Label45: TLabel;
+    Label46: TLabel;
+    cbSessionPlace_Therapy: TComboBox;
+    eStartTime_Therapy: TEdit;
+    eFinishTime_Therapy: TEdit;
+    Label48: TLabel;
+    mHomeExcersices_Therapy: TMemo;
+    sgTherapyResume: TStringGrid;
+    BindSourceDB1: TBindSourceDB;
+    NavigatorBindSourceDB1: TBindNavigator;
+    BindingsList1: TBindingsList;
+    tbEvaluation: TTabItem;
+    Label26: TLabel;
+    Edit7: TEdit;
+    Label27: TLabel;
+    Label28: TLabel;
+    Label29: TLabel;
+    ComboBox8: TComboBox;
+    ComboBox9: TComboBox;
+    Label30: TLabel;
+    Label31: TLabel;
+    Edit14: TEdit;
+    Label32: TLabel;
+    Edit15: TEdit;
+    Label33: TLabel;
+    Edit18: TEdit;
+    GridPanelLayout5: TGridPanelLayout;
+    btnCancel_Therapy: TButton;
+    btnDelete_Therapy: TButton;
+    btnSave_Therapy: TButton;
+    btnEdit_Therapy: TButton;
+    btnAdd_Therapy: TButton;
+    cbTherapistName_Therapy: TComboBox;
+    mNotes_Therapy: TMemo;
+    mExcersices_Therapy: TMemo;
+    Label35: TLabel;
+    Label36: TLabel;
+    Label37: TLabel;
+    Label38: TLabel;
+    Label41: TLabel;
+    eTestDateYear_Test: TEdit;
+    Label47: TLabel;
+    eTestDateMonth_Test: TEdit;
+    Label49: TLabel;
+    eTestDateDay_Test: TEdit;
+    cbGrade_Test: TComboBox;
+    mDescriptions_Test: TMemo;
+    cboTherapyTypes_Therapy: TComboBox;
+    Label50: TLabel;
+    tcAccounting: TTabControl;
+    tbTransactions: TTabItem;
+    tbNewTransaction: TTabItem;
+    Label51: TLabel;
+    BindNavigator1: TBindNavigator;
+    eDateDay_Acc: TEdit;
+    Label53: TLabel;
+    eDateMonth_Acc: TEdit;
+    Label54: TLabel;
+    eDateYear_Acc: TEdit;
+    Label55: TLabel;
+    Label56: TLabel;
+    Label57: TLabel;
+    ePriceValue_Acc: TEdit;
+    Label58: TLabel;
+    Label59: TLabel;
+    cbTransactionTypes_Acc: TComboBox;
+    GridPanelLayout7: TGridPanelLayout;
+    btnCancel_Acc: TButton;
+    btnDelete_Acc: TButton;
+    btnSave_Acc: TButton;
+    btnEdit_Acc: TButton;
+    btnAdd_Acc: TButton;
+    mDescriptions_Acc: TMemo;
+    Label60: TLabel;
+    tcEducational: TTabControl;
+    tbListEvents: TTabItem;
+    tbRegEvents: TTabItem;
+    StringGrid3: TStringGrid;
+    BindNavigator2: TBindNavigator;
+    Label61: TLabel;
+    Edit30: TEdit;
+    Label62: TLabel;
+    cboEvents: TComboBox;
+    Label63: TLabel;
+    Label64: TLabel;
+    Edit31: TEdit;
+    Label65: TLabel;
+    Edit32: TEdit;
+    Label66: TLabel;
+    Edit33: TEdit;
+    CheckBox3: TCheckBox;
+    GridPanelLayout9: TGridPanelLayout;
+    btnCancel_Farhangi: TButton;
+    btnDelete_Farhangi: TButton;
+    btnSave_Farhangi: TButton;
+    btnEdit_Farhangi: TButton;
+    btnAdd_Farhangi: TButton;
+    Memo10: TMemo;
+    Label67: TLabel;
+    tcEvents: TTabControl;
+    TabItem3: TTabItem;
+    StringGrid4: TStringGrid;
+    ListBoxItem1: TListBoxItem;
+    ListBoxItem2: TListBoxItem;
+    ListBoxItem3: TListBoxItem;
+    ListBoxItem4: TListBoxItem;
+    ListBoxItem5: TListBoxItem;
+    ListBoxItem6: TListBoxItem;
+    ListBoxItem7: TListBoxItem;
+    ListBoxItem8: TListBoxItem;
+    ListBoxItem9: TListBoxItem;
+    ListBoxItem10: TListBoxItem;
+    ListBoxItem11: TListBoxItem;
+    ListBoxItem12: TListBoxItem;
+    BindSourceDB3: TBindSourceDB;
+    BindSourceDB4: TBindSourceDB;
+    BindSourceDB5: TBindSourceDB;
+    BindSourceDB2: TBindSourceDB;
+    BindSourceDB6: TBindSourceDB;
+    BindSourceDB7: TBindSourceDB;
+    BindSourceDB8: TBindSourceDB;
+    BindSourceDB9: TBindSourceDB;
+    LinkListControlToFieldEventName: TLinkListControlToField;
+    btnClose: TButton;
+    BindSourceDB10: TBindSourceDB;
+    cboItmFather: TListBoxItem;
+    cboItmMother: TListBoxItem;
+    cboItmBrother: TListBoxItem;
+    cboItmSister: TListBoxItem;
+    cboItmuncle: TListBoxItem;
+    cboItmAmoo: TListBoxItem;
+    cboItmDaei: TListBoxItem;
+    cboItmKhaleh: TListBoxItem;
+    BindSourceDB11: TBindSourceDB;
+    LinkControlToField1: TLinkControlToField;
+    LinkControlToField2: TLinkControlToField;
+    LinkControlToField3: TLinkControlToField;
+    LinkControlToField4: TLinkControlToField;
+    LinkControlToField5: TLinkControlToField;
+    LinkControlToField6: TLinkControlToField;
+    LinkControlToField7: TLinkControlToField;
+    LinkControlToField8: TLinkControlToField;
+    LinkControlToField9: TLinkControlToField;
+    BindSourceDB12: TBindSourceDB;
+    ActionList1: TActionList;
+    LiveBindingsBindNavigateInsert1: TFMXBindNavigateInsert;
+    LiveBindingsBindNavigateDelete1: TFMXBindNavigateDelete;
+    LiveBindingsBindNavigateEdit1: TFMXBindNavigateEdit;
+    LiveBindingsBindNavigatePost1: TFMXBindNavigatePost;
+    LiveBindingsBindNavigateCancel1: TFMXBindNavigateCancel;
+    LinkFillControlToField1: TLinkFillControlToField;
+    LinkFillControlToField2: TLinkFillControlToField;
+    NavigatorBindSourceDB11: TBindNavigator;
+    BindSourceDB13: TBindSourceDB;
+    LinkControlToField10: TLinkControlToField;
+    LinkControlToField11: TLinkControlToField;
+    LinkControlToField12: TLinkControlToField;
+    LinkControlToField13: TLinkControlToField;
+    LinkControlToField14: TLinkControlToField;
+    LinkControlToField15: TLinkControlToField;
+    mParentNotes: TMemo;
+    Label68: TLabel;
+    LinkControlToField16: TLinkControlToField;
+    LinkControlToField17: TLinkControlToField;
+    LinkControlToField18: TLinkControlToField;
+    cbPatientDisorderType: TComboBox;
+    Label69: TLabel;
+    BindSourceDB14: TBindSourceDB;
+    LinkFillControlToField3: TLinkFillControlToField;
+    LinkFillControlToField4: TLinkFillControlToField;
+    LinkControlToField19: TLinkControlToField;
+    NavigatorBindSourceDB13: TBindNavigator;
+    LiveBindingsBindNavigateInsert2: TFMXBindNavigateInsert;
+    LiveBindingsBindNavigateDelete2: TFMXBindNavigateDelete;
+    LiveBindingsBindNavigateEdit2: TFMXBindNavigateEdit;
+    LiveBindingsBindNavigatePost2: TFMXBindNavigatePost;
+    LiveBindingsBindNavigateCancel2: TFMXBindNavigateCancel;
+    BindSourceDB15: TBindSourceDB;
+    BindSourceDB16: TBindSourceDB;
+    LinkFillControlToField5: TLinkFillControlToField;
+    LinkFillControlToField6: TLinkFillControlToField;
+    LinkFillControlToField7: TLinkFillControlToField;
+    LinkFillControlToField8: TLinkFillControlToField;
+    BindSourceDB17: TBindSourceDB;
+    BindSourceDB18: TBindSourceDB;
+    LinkFillControlToField9: TLinkFillControlToField;
+    BindSourceDB19: TBindSourceDB;
+    LinkControlToField20: TLinkControlToField;
+    LinkControlToField21: TLinkControlToField;
+    LinkControlToField22: TLinkControlToField;
+    BindSourceDB20: TBindSourceDB;
+    LinkFillControlToField10: TLinkFillControlToField;
+    LinkControlToField23: TLinkControlToField;
+    LinkControlToField24: TLinkControlToField;
+    BindSourceDB21: TBindSourceDB;
+    LinkFillControlToField11: TLinkFillControlToField;
+    NavigatorBindSourceDB19: TBindNavigator;
+    LiveBindingsBindNavigateInsert3: TFMXBindNavigateInsert;
+    LiveBindingsBindNavigateDelete3: TFMXBindNavigateDelete;
+    LiveBindingsBindNavigateEdit3: TFMXBindNavigateEdit;
+    LiveBindingsBindNavigatePost3: TFMXBindNavigatePost;
+    LiveBindingsBindNavigateCancel3: TFMXBindNavigateCancel;
+    BindSourceDB22: TBindSourceDB;
+    cbPatientName_Therapy_NewSession: TComboBox;
+    LinkFillControlToField12: TLinkFillControlToField;
+    BindSourceDB23: TBindSourceDB;
+    LinkFillControlToField13: TLinkFillControlToField;
+    LinkControlToField25: TLinkControlToField;
+    LinkControlToField26: TLinkControlToField;
+    LinkControlToField27: TLinkControlToField;
+    dsPatient: TDataSource;
+    cbPatient_Test: TComboBox;
+    Label70: TLabel;
+    LinkFillControlToField14: TLinkFillControlToField;
+    LinkFillControlToField15: TLinkFillControlToField;
+    ListBoxItem13: TListBoxItem;
+    ListBoxItem14: TListBoxItem;
+    ListBoxItem15: TListBoxItem;
+    ListBoxItem16: TListBoxItem;
+    ListBoxItem17: TListBoxItem;
+    ListBoxItem18: TListBoxItem;
+    ListBoxItem19: TListBoxItem;
+    ListBoxItem20: TListBoxItem;
+    ListBoxItem21: TListBoxItem;
+    ListBoxItem22: TListBoxItem;
+    LinkControlToField28: TLinkControlToField;
+    NavigatorBindSourceDB23: TBindNavigator;
+    LiveBindingsBindNavigateInsert4: TFMXBindNavigateInsert;
+    LiveBindingsBindNavigateDelete4: TFMXBindNavigateDelete;
+    LiveBindingsBindNavigateEdit4: TFMXBindNavigateEdit;
+    LiveBindingsBindNavigatePost4: TFMXBindNavigatePost;
+    LiveBindingsBindNavigateCancel4: TFMXBindNavigateCancel;
+    cbTherapist_test: TComboBox;
+    LinkFillControlToField16: TLinkFillControlToField;
+    BindSourceDB24: TBindSourceDB;
+    LinkGridToDataSourceBindSourceDB24: TLinkGridToDataSource;
+    Label34: TLabel;
+    cbPatientName_Info_Relations: TComboBox;
+    LinkFillControlToField17: TLinkFillControlToField;
+    BindSourceDB25: TBindSourceDB;
+    LinkControlToField29: TLinkControlToField;
+    LinkControlToField30: TLinkControlToField;
+    LinkControlToField31: TLinkControlToField;
+    LinkControlToField32: TLinkControlToField;
+    BindSourceDB26: TBindSourceDB;
+    LinkFillControlToField18: TLinkFillControlToField;
+    cbPatientName_Acc: TComboBox;
+    Label52: TLabel;
+    LinkFillControlToField19: TLinkFillControlToField;
+    NavigatorBindSourceDB25: TBindNavigator;
+    LiveBindingsBindNavigateInsert5: TFMXBindNavigateInsert;
+    LiveBindingsBindNavigateDelete5: TFMXBindNavigateDelete;
+    LiveBindingsBindNavigateEdit5: TFMXBindNavigateEdit;
+    LiveBindingsBindNavigatePost5: TFMXBindNavigatePost;
+    LiveBindingsBindNavigateCancel5: TFMXBindNavigateCancel;
+    LinkControlToField33: TLinkControlToField;
+    sgTransactionList: TStringGrid;
+    BindSourceDB27: TBindSourceDB;
+    LinkGridToDataSourceBindSourceDB27: TLinkGridToDataSource;
+    procedure FormCreate(Sender: TObject);
+    procedure btnCloseClick(Sender: TObject);
+    procedure dsPatientStateChange(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure DatePickerDateChange(Sender: TObject);
+    procedure tcTherapyChange(Sender: TObject);
+  private
+    { Private declarations }
+  FDatePicker: TSimpleDatePicker;
+
+  public
+    { Public declarations }
+  end;
+
+var
+  fProfile: TfProfile;
+
+implementation
+
+{$R *.fmx}
+
+uses dmTherapy, dmPatients, dmAccounting, dmServer, uJalaliCalendar;
+
+procedure TfProfile.btnCloseClick(Sender: TObject);
+begin
+  self.Close;
+end;
+
+procedure TfProfile.Button1Click(Sender: TObject);
+begin
+//  PersianDatePicker1.Year := 1403;
+//  PersianDatePicker1.Month := 1;
+//  PersianDatePicker1.Day := 15;
+end;
+
+procedure TfProfile.Button2Click(Sender: TObject);
+begin
+//  ShowMessage('Year: ' + IntToStr(PersianDatePicker1.Year) + #13#10 + 'Month: '
+//    + IntToStr(PersianDatePicker1.Month) + #13#10 + 'Day: ' +
+//    IntToStr(PersianDatePicker1.Day));
+end;
+
+procedure TfProfile.dsPatientStateChange(Sender: TObject);
+var
+  I: Integer;
+begin
+  for I := 0 to ComponentCount - 1 do
+  begin
+    if (Components[I] is TEdit) then
+    begin
+      if (Components[I] as TEdit).Parent = tbGeneralInfo then
+        if dsPatient.State in [dsEdit, dsInsert] then
+          (Components[I] as TEdit).Enabled := True
+        else
+          (Components[I] as TEdit).Enabled := False
+    end
+    else if (Components[I] is TComboBox) then
+    begin
+      if (Components[I] as TComboBox).Parent = tbGeneralInfo then
+        if dsPatient.State in [dsEdit, dsInsert] then
+          (Components[I] as TComboBox).Enabled := True
+        else
+          (Components[I] as TComboBox).Enabled := False;
+
+    end;
+  end;
+end;
+
+procedure TfProfile.DatePickerDateChange(Sender: TObject);
+begin
+  ShowMessage('تاریخ: ' + IntToStr(FDatePicker.Year) + '/' +
+              IntToStr(FDatePicker.Month) + '/' +
+              IntToStr(FDatePicker.Day));
+end;
+
+
+procedure TfProfile.FormCreate(Sender: TObject);
+var
+  I: Integer;
+  TextSettings: TTextSettings;
+begin
+  FDatePicker := TSimpleDatePicker.Create(Self);
+//  FDatePicker.OnDateChange := DatePickerDateChange;
+  for I := 0 to ComponentCount - 1 do
+  begin
+    // ۱. اگر دکمه است، کاری نکن (برای جلوگیری از به هم ریختن متن دکمه)
+    if Components[I] is TButton then
+      Continue;
+
+    // ۲. اگر کنترل از نوع ITextSettings پشتیبانی می‌کند
+    if Supports(Components[I], ITextSettings) then
+    begin
+      TextSettings := (Components[I] as ITextSettings).TextSettings;
+
+      // ۳. تنظیمات ویژه برای TEdit (و مشتقاتش مثل TNumberBox یا TComboEdit)
+      if Components[I] is TEdit then
+      begin
+        Continue;
+        // تنظیم جهت ورودی به فارسی/راست‌چین (مخصوص ویندوز)
+        // TEdit(Components[i]).ImeMode := TImeMode.imAlpha;
+        // یا imDontCare بسته به نیاز، اما imAlpha معمولا ورودی را بازتر می‌گذارد
+
+        // تنظیم تراز متن به راست
+        // TextSettings.HorzAlign := TTextAlign.Trailing;
+      end
+      // ۴. برای سایر کنترل‌ها (مثل Memo و Label)
+      else
+      begin
+        // فقط Memo و Label را راست‌چین کن (اگر مایل بودید)
+        // اگر می‌خواهید همه چیز بجز دکمه راست‌چین شود، این شرط را حذف کنید
+        if (Components[I] is TMemo) or (Components[I] is TLabel) then
+          TextSettings.HorzAlign := TTextAlign.Trailing;
+      end;
+    end;
+    if Components[I] is TTabControl then
+    begin
+      (Components[I] as TTabControl).TabIndex := 0;
+      // Resat all tabs order to 0 position
+    end;
+  end;
+end;
+
+procedure TfProfile.tcTherapyChange(Sender: TObject);
+begin
+  with dmTherapy_.fQrySessions do
+  begin
+    Close;
+    Open;
+  end;
+end;
+
+end.

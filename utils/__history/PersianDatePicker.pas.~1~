@@ -1,0 +1,29 @@
+unit PersianDatePicker;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FMX.Types, FMX.Controls;
+
+type
+  TPersianDatePicker = class(TControl)
+  private
+    { Private declarations }
+  protected
+    { Protected declarations }
+  public
+    { Public declarations }
+  published
+    { Published declarations }
+  end;
+
+procedure Register;
+
+implementation
+
+procedure Register;
+begin
+  RegisterComponents('Samples', [TPersianDatePicker]);
+end;
+
+end.

@@ -1,0 +1,18 @@
+object DataModule5: TDataModule5
+  Height = 480
+  Width = 339
+  object dsTransportationTypes: TDataSource
+    DataSet = fQryTransactionTypes
+    Left = 200
+    Top = 24
+  end
+  object fQryTransactionTypes: TFDQuery
+    Connection = DataModule1.FdServerConnection
+    SQL.Strings = (
+      'SELECT [Id]'
+      '      ,[TransportName]'
+      '  FROM [AutiSys].[dbo].[TransportationTypes]')
+    Left = 64
+    Top = 24
+  end
+end

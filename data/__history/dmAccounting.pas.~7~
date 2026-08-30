@@ -1,0 +1,52 @@
+unit dmAccounting;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TdmAccounting_ = class(TDataModule)
+    fQryTransactionTypes: TFDQuery;
+    fQryTransactions: TFDQuery;
+    fQryTransactionsId: TFDAutoIncField;
+    fQryTransactionsPatientId: TIntegerField;
+    fQryTransactionsPaymentDate_Year: TIntegerField;
+    fQryTransactionsPaymentDate_Month: TIntegerField;
+    fQryTransactionsPaymentDate_Day: TIntegerField;
+    fQryTransactionsAmount: TIntegerField;
+    fQryTransactionsTransactionType_Id: TIntegerField;
+    fQryTransactionsNotes: TWideMemoField;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dmAccounting_: TdmAccounting_;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+uses dmServer;
+
+{$R *.dfm}
+
+procedure TdmAccounting_.DataModuleCreate(Sender: TObject);
+var
+  i: integer;
+begin
+  for i := 0 to ComponentCount-1 do
+  begin
+    if Components[i] is TFDQuery then
+      (Components[i] as TFDQuery).Active := true;
+  end;
+end;
+
+end.

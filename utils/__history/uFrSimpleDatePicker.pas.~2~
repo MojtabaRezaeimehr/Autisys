@@ -1,0 +1,29 @@
+unit uFrSimpleDatePicker;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Controls.Presentation, FMX.Edit, FMX.ComboEdit;
+
+type
+  TMyDatePicker = class(TFrame)
+    cbDay: TComboEdit;
+    cbMonth: TComboEdit;
+    cbYear: TComboEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.fmx}
+procedure Register;
+begin
+  RegisterComponents('My Frames', [TMyDatePicker]);
+end;
+
+end.

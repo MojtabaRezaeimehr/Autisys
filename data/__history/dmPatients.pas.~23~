@@ -1,0 +1,94 @@
+unit dmPatients;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TdmPatints = class(TDataModule)
+    fQryPatients: TFDQuery;
+    fQryPatientFamilyMembers: TFDQuery;
+    fQryPatientsId: TFDAutoIncField;
+    fQryPatientsFirstName: TWideStringField;
+    fQryPatientsLastName: TWideStringField;
+    fQryPatientsGender: TWideStringField;
+    fQryPatientsNationalCode: TStringField;
+    fQryPatientsBirthYear: TIntegerField;
+    fQryPatientsBirthMonth: TByteField;
+    fQryPatientsBirthDay: TByteField;
+    fQryPatientsCity: TWideStringField;
+    fQryPatientsAddress: TWideStringField;
+    fQryPatientsIncomeDecile: TByteField;
+    fQryPatientsIsLowIncome: TBooleanField;
+    fQryPatientsInsuranceTypeId: TIntegerField;
+    fQryPatientsSupportTypeId: TIntegerField;
+    fQryPatientsNotes: TWideMemoField;
+    fQryIranProvinces: TFDQuery;
+    dsProvinces: TDataSource;
+    fQryIranProvincesProvinceName: TWideStringField;
+    fQryIranProvincesId: TFDAutoIncField;
+    fQryInsuranceTypes: TFDQuery;
+    dsInsuranceTypes: TDataSource;
+    fQryInsuranceTypesId: TFDAutoIncField;
+    fQryInsuranceTypesInsuranceName: TWideStringField;
+    dsSupportTypes: TDataSource;
+    fQrySupportTypes: TFDQuery;
+    fQrySupportTypesId: TFDAutoIncField;
+    fQrySupportTypesSupportName: TWideStringField;
+    dsDisorderTypes: TDataSource;
+    fQryDisorderTypes: TFDQuery;
+    fQryDisorderTypesId: TFDAutoIncField;
+    fQryDisorderTypesDisorderName: TWideStringField;
+    dsPatients: TDataSource;
+    fQryPatientsProvinceId: TIntegerField;
+    dsParents: TDataSource;
+    fQryParents: TFDQuery;
+    fQryParentsId: TFDAutoIncField;
+    fQryParentsPatientId: TIntegerField;
+    fQryParentsParentTypeId: TIntegerField;
+    fQryParentsFirstName: TWideStringField;
+    fQryParentsLastName: TWideStringField;
+    fQryParentsAge: TByteField;
+    fQryParentsNationalCode: TStringField;
+    fQryParentsJob: TWideStringField;
+    fQryParentsMonthlyIncome: TFMTBCDField;
+    fQryParentsWorkAddress: TWideStringField;
+    fQryParentsNotes: TWideMemoField;
+    fQryParentsPhone: TStringField;
+    fQryPatientsDisorderTypeId: TIntegerField;
+    fQryParentsHasDisorder: TBooleanField;
+    fQryParentsDisorderTypeId: TIntegerField;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dmPatints: TdmPatints;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+uses dmServer;
+
+{$R *.dfm}
+
+procedure TdmPatints.DataModuleCreate(Sender: TObject);
+var
+  i: integer;
+begin
+  for i := 0 to ComponentCount-1 do
+  begin
+    if Components[i] is TFDQuery then
+      (Components[i] as TFDQuery).Active := true;
+  end;
+end;
+
+end.
