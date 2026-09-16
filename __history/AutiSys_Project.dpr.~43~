@@ -1,0 +1,67 @@
+program AutiSys_Project;
+
+uses
+  System.StartUpCopy,
+  System.UITypes,   // <-- add this
+  FMX.Forms,
+  Main in 'Main.pas' {fMainScreen},
+  uLogin in 'forms\uLogin.pas' {fLogin},
+  uProfile in 'forms\uProfile.pas' {fProfile},
+  dmServer in 'data\dmServer.pas' {dmServer_: TDataModule},
+  dmPatients in 'data\dmPatients.pas' {dmPatints: TDataModule},
+  dmTherapy in 'data\dmTherapy.pas' {dmTherapy_: TDataModule},
+  uSessionDetails in 'forms\uSessionDetails.pas' {Form1},
+  dmAccounting in 'data\dmAccounting.pas' {dmAccounting_: TDataModule},
+  dmEvents in 'data\dmEvents.pas' {dmEvents_: TDataModule},
+  uFunctions in 'utils\uFunctions.pas',
+  uJalaliCalendar in 'utils\PersianDate_Component\uJalaliCalendar.pas',
+  uSimpleDatePicker in 'utils\uSimpleDatePicker.pas',
+  uUserRepository in 'utils\uUserRepository.pas',
+  uUserRepository.FireDAC in 'utils\uUserRepository.FireDAC.pas',
+  uAuthenticationService in 'utils\uAuthenticationService.pas';
+
+{$R *.res}
+
+var
+  UserRepo: IUserRepository;
+  AuthService: IAuthenticationService;
+  LoginForm: TfLogin;
+
+begin
+  Application.Initialize;
+
+  // 1. Create the data module manually (do NOT auto-create it)
+  dmServer_ := TdmServer_.Create(nil);
+  try
+    // 2. Configure FireDAC connection
+    //    (Consider moving these parameters to an external config file later)
+    dmServer_.FdServerConnection.DriverName := 'MSSQL';
+    dmServer_.FdServerConnection.Params.Values['Server']   := 'localhost';
+    dmServer_.FdServerConnection.Params.Values['Database'] := 'AutiSys';
+    dmServer_.FdServerConnection.Params.Values['User_Name'] := 'sa';
+    dmServer_.FdServerConnection.Params.Values['Password'] := 'amf@sql2022';
+    dmServer_.FdServerConnection.LoginPrompt := False;
+    dmServer_.FdServerConnection.Connected := True;
+
+    // 3. Create the repository (FireDAC implementation)
+    UserRepo := TFireDACUserRepository.Create(dmServer_.FdServerConnection);
+
+    // 4. Create the authentication service
+    AuthService := TAuthenticationService.Create(UserRepo);
+
+    // 5. Show the login form and wait for result
+    LoginForm := TfLogin.Create(nil, AuthService);
+    try
+      if LoginForm.ShowModal = mrOK then
+      begin
+        // Login successful – create the main form and run the application
+        Application.Run;
+      end;
+      // If login fails or is cancelled, the app will terminate after the try/finally blocks.
+    finally
+      LoginForm.Free;
+    end;
+  finally
+    dmServer_.Free;
+  end;
+end.

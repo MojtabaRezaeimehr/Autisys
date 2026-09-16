@@ -42,6 +42,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure btnSearchClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -103,17 +104,72 @@ begin
   // ------------------------------------------------------------------
   with TfProfile.Create(nil) do
     try
-      // 1. پیدا کردن رکورد در دیتاست (فیلد «Id» باید موجود باشد)
-      dmPatints.fQryPatients.Locate('Id', PatientID, []);
-      dmPatints.fQryParents.Locate('PatientId',PatientID,[]);
-      dmTherapy_.fQrySessions.Locate('PatientId',PatientID,[]);
-      dmAccounting_.fQryTransactions.Locate('PatientId',PatientID,[]);
-      dmAccounting_.fQryTransactionsRep.Locate('PatientId',PatientID,[]);
-      // 2. نمایش فرم مودال
+      // 🔒 Guard: PatientID must be valid
+      if VarIsNull(PatientID) or VarIsEmpty(PatientID) then
+      begin
+        ShowMessage('PatientID is empty - cannot locate records.');
+        Exit;
+      end;
+
+      // 🔒 Guard: data modules must exist
+      if not Assigned(dmPatints) then
+      begin
+        ShowMessage('dmPatints is not created.');
+        Exit;
+      end;
+      if not Assigned(dmTherapy_) then
+      begin
+        ShowMessage('dmTherapy_ is not created.');
+        Exit;
+      end;
+      if not Assigned(dmAccounting_) then
+      begin
+        ShowMessage('dmAccounting_ is not created.');
+        Exit;
+      end;
+
+      // 1. Locate in datasets (each guarded)
+
+      // fQryPatients -> Id
+      if Assigned(dmPatints.fQryPatients) and dmPatints.fQryPatients.Active and
+        Assigned(dmPatints.fQryPatients.FindField('Id')) then
+        dmPatints.fQryPatients.Locate('Id', PatientID, []);
+
+      // fQryParents -> PatientId
+      if Assigned(dmPatints.fQryParents) and dmPatints.fQryParents.Active and
+        Assigned(dmPatints.fQryParents.FindField('PatientId')) then
+        dmPatints.fQryParents.Locate('PatientId', PatientID, []);
+
+      // fQrySessions -> PatientId
+      if Assigned(dmTherapy_.fQrySessions) and
+        dmTherapy_.fQrySessions.Active and
+        Assigned(dmTherapy_.fQrySessions.FindField('PatientId')) then
+        dmTherapy_.fQrySessions.Locate('PatientId', PatientID, []);
+
+      // fQryTransactions -> PatientId
+      if Assigned(dmAccounting_.fQryTransactions) and
+        dmAccounting_.fQryTransactions.Active and
+        Assigned(dmAccounting_.fQryTransactions.FindField('PatientId')) then
+        dmAccounting_.fQryTransactions.Locate('PatientId', PatientID, []);
+
+      // fQryTransactionsRep -> PatientId
+      if Assigned(dmAccounting_.fQryTransactionsRep) and
+        dmAccounting_.fQryTransactionsRep.Active and
+        Assigned(dmAccounting_.fQryTransactionsRep.FindField('PatientId')) then
+        dmAccounting_.fQryTransactionsRep.Locate('PatientId', PatientID, []);
+
+      // 2. Show form modal
       ShowModal;
     finally
-      Free; // آزادسازی فرم
+      Free;
     end;
+end;
+
+procedure TfMainScreen.FormCreate(Sender: TObject);
+begin
+  dmPatints := TdmPatints.Create(Self);
+  dmTherapy_ := TdmTherapy_.Create(Self);
+  dmAccounting_ := TdmAccounting_.Create(Self);
 end;
 
 procedure TfMainScreen.FormResize(Sender: TObject);

@@ -1,120 +1,120 @@
 ﻿[Label11]
-Coordinates=6234,4311,52,51
+Coordinates=6234,4311,60,58
 
 [Label15]
-Coordinates=10,4311,52,51
+Coordinates=10,4311,60,58
 
 [GridPanelLayout1]
-Coordinates=2268,4465,102,33
+Coordinates=2268,4465,118,36
 
 [Label13]
-Coordinates=159,4388,52,51
+Coordinates=159,4388,60,58
 
 [Label4]
-Coordinates=3753,4311,46,51
+Coordinates=3753,4311,53,58
 
 [Label10]
-Coordinates=5557,4311,52,51
+Coordinates=5557,4311,60,58
 
 [Label24]
-Coordinates=3694,4388,52,51
+Coordinates=3694,4388,60,58
 
 [GridPanelLayout2]
-Coordinates=5999,4388,102,33
+Coordinates=5999,4388,118,36
 
 [Label7]
-Coordinates=5084,4311,46,51
+Coordinates=5084,4311,53,58
 
 [Label16]
-Coordinates=2219,4311,52,51
+Coordinates=2219,4311,60,58
 
 [Label17]
-Coordinates=6156,4311,52,51
+Coordinates=6156,4311,60,58
 
 [Label3]
-Coordinates=4282,4311,46,51
+Coordinates=4282,4311,53,58
 
 [Label18]
-Coordinates=1676,4388,52,51
+Coordinates=1676,4388,60,58
 
 [Label19]
-Coordinates=1872,4388,52,51
+Coordinates=1872,4388,60,58
 
 [Label2]
-Coordinates=5713,4311,46,51
+Coordinates=5713,4311,53,58
 
 [Label14]
-Coordinates=977,4311,52,51
+Coordinates=977,4311,60,58
 
 [Label1]
-Coordinates=2069,4311,46,51
+Coordinates=2069,4311,53,58
 
 [Label6]
-Coordinates=1045,4388,46,51
+Coordinates=1045,4388,53,58
 
 [Label22]
-Coordinates=3616,4388,52,51
+Coordinates=3616,4388,60,58
 
 [Label8]
-Coordinates=1282,4311,46,51
+Coordinates=1282,4311,53,58
 
 [Label20]
-Coordinates=2254,4388,52,51
+Coordinates=2254,4388,60,58
 
 [Label23]
-Coordinates=2141,4311,52,51
+Coordinates=2141,4311,60,58
 
 [Label21]
-Coordinates=3055,4311,52,51
+Coordinates=3055,4311,60,58
 
 [Label12]
-Coordinates=2410,4388,52,51
+Coordinates=2410,4388,60,58
 
 [Label9]
-Coordinates=1841,4311,46,51
+Coordinates=1841,4311,53,58
 
 [Label5]
-Coordinates=905,4311,46,51
+Coordinates=905,4311,53,58
 
 [Label40]
-Coordinates=1204,4311,52,51
+Coordinates=1204,4311,60,58
 
 [Label48]
-Coordinates=1950,4388,52,51
+Coordinates=1950,4388,60,58
 
 [Label44]
-Coordinates=490,4388,52,51
+Coordinates=490,4388,60,58
 
 [Label39]
-Coordinates=638,4311,52,51
+Coordinates=638,4311,60,58
 
 [GridPanelLayout4]
-Coordinates=4481,4465,102,33
+Coordinates=4481,4465,118,36
 
 [Label46]
-Coordinates=4655,4388,52,51
+Coordinates=4655,4388,60,58
 
 [Label45]
-Coordinates=4170,4388,52,51
+Coordinates=4170,4388,60,58
 
 [SQLTable1]
-Coordinates=1506,4388,66,51
+Coordinates=1506,4388,79,58
 
 [Label42]
-Coordinates=4014,4388,52,51
+Coordinates=4014,4388,60,58
 
 [Label43]
-Coordinates=2750,4311,52,51
+Coordinates=2750,4311,60,58
 
 [Label25]
-Coordinates=4248,4388,52,51
+Coordinates=4248,4388,60,58
 
 []
 Coordinates=0,0,53,51
 Visible=True
 
 [BindSourceDB1]
-Coordinates=3404,103,92,87
+Coordinates=3404,103,106,90
 LayerNames=
 Visible=True
 
@@ -123,191 +123,191 @@ Visible=False
 Coordinates=479,118,172,33
 
 [BindingsList1]
-Coordinates=792,500,82,33
+Coordinates=792,500,91,36
 
 [tbGeneralInfo]
-Coordinates=4609,4465,81,33
+Coordinates=4609,4465,93,36
 
 [tbTherapy]
-Coordinates=5552,4388,64,33
+Coordinates=5552,4388,72,36
 
 [tbAccounting]
-Coordinates=2396,4465,80,33
+Coordinates=2396,4465,89,36
 
 [tbEducational]
-Coordinates=3447,4465,82,33
+Coordinates=3447,4465,93,36
 
 [tbEvents]
-Coordinates=4093,4465,57,33
+Coordinates=4093,4465,65,36
 
 [tbPatient]
-Coordinates=5468,4388,58,33
+Coordinates=5468,4388,66,36
 
 [tbSession]
-Coordinates=3555,4465,63,33
+Coordinates=3555,4465,71,36
 
 [cbIranProvinces]
-Coordinates=2589,1252,94,123
+Coordinates=2589,1252,107,146
 Visible=True
 
 [Edit31]
-Coordinates=567,4311,45,51
+Coordinates=567,4311,51,58
 
 [Edit7]
-Coordinates=2684,4311,40,51
+Coordinates=2684,4311,44,58
 
 [Label26]
-Coordinates=88,4311,52,51
+Coordinates=88,4311,60,58
 
 [Edit33]
-Coordinates=1435,4388,45,51
+Coordinates=1435,4388,51,58
 
 [Label49]
-Coordinates=4757,4311,52,51
+Coordinates=4757,4311,60,58
 
 [Label31]
-Coordinates=3211,4311,52,51
+Coordinates=3211,4311,60,58
 
 [Label53]
-Coordinates=4092,4388,52,51
+Coordinates=4092,4388,60,58
 
 [tbRegEvents]
-Coordinates=1436,4465,77,33
+Coordinates=1436,4465,88,36
 
 [Label66]
-Coordinates=2606,4311,52,51
+Coordinates=2606,4311,60,58
 
 [Label67]
-Coordinates=3244,4388,52,51
+Coordinates=3244,4388,60,58
 
 [Label35]
-Coordinates=4733,4388,52,51
+Coordinates=4733,4388,60,58
 
 [Label28]
-Coordinates=4583,4311,52,51
+Coordinates=4583,4311,60,58
 
 [Label58]
-Coordinates=2528,4311,52,51
+Coordinates=2528,4311,60,58
 
 [Label32]
-Coordinates=1279,4388,52,51
+Coordinates=1279,4388,60,58
 
 [Label62]
-Coordinates=10,4388,52,51
+Coordinates=10,4388,60,58
 
 [Edit14]
-Coordinates=2984,4311,45,51
+Coordinates=2984,4311,51,58
 
 [Label50]
-Coordinates=2332,4388,52,51
+Coordinates=2332,4388,60,58
 
 [Label51]
-Coordinates=2828,4311,52,51
+Coordinates=2828,4311,60,58
 
 [tbEvaluation]
-Coordinates=2710,4465,76,33
+Coordinates=2710,4465,86,36
 
 [Label59]
-Coordinates=322,4311,52,51
+Coordinates=322,4311,60,58
 
 [Label29]
-Coordinates=166,4311,52,51
+Coordinates=166,4311,60,58
 
 [Memo10]
-Coordinates=2488,4388,55,51
+Coordinates=2488,4388,64,58
 
 [Label33]
-Coordinates=2750,4388,52,51
+Coordinates=2750,4388,60,58
 
 [GridPanelLayout9]
-Coordinates=2812,4465,102,33
+Coordinates=2812,4465,118,36
 
 [Label47]
-Coordinates=1357,4388,52,51
+Coordinates=1357,4388,60,58
 
 [Label41]
-Coordinates=4126,4311,52,51
+Coordinates=4126,4311,60,58
 
 [Label37]
-Coordinates=5635,4311,52,51
+Coordinates=5635,4311,60,58
 
 [Edit18]
-Coordinates=88,4388,45,51
+Coordinates=88,4388,51,58
 
 [Label64]
-Coordinates=3467,4311,52,51
+Coordinates=3467,4311,60,58
 
 [Label36]
-Coordinates=5283,4311,52,51
+Coordinates=5283,4311,60,58
 
 [Label60]
-Coordinates=1991,4311,52,51
+Coordinates=1991,4311,60,58
 
 [Label56]
-Coordinates=3045,4388,52,51
+Coordinates=3045,4388,60,58
 
 [CheckBox3]
-Coordinates=4661,4311,70,51
+Coordinates=4661,4311,80,58
 
 [Label57]
-Coordinates=3133,4311,52,51
+Coordinates=3133,4311,60,58
 
 [Edit15]
-Coordinates=1133,4311,45,51
+Coordinates=1133,4311,51,58
 
 [Label38]
-Coordinates=3943,4311,52,51
+Coordinates=3943,4311,60,58
 
 [Label61]
-Coordinates=2906,4311,52,51
+Coordinates=2906,4311,60,58
 
 [StringGrid3]
-Coordinates=664,4388,70,51
+Coordinates=664,4388,80,58
 
 [GridPanelLayout7]
-Coordinates=10,4465,102,33
+Coordinates=10,4465,118,36
 
 [tbListEvents]
-Coordinates=2608,4465,76,33
+Coordinates=2608,4465,85,36
 
 [Label65]
-Coordinates=244,4311,52,51
+Coordinates=244,4311,60,58
 
 [Edit32]
-Coordinates=834,4311,45,51
+Coordinates=834,4311,51,58
 
 [Label30]
-Coordinates=5361,4311,52,51
+Coordinates=5361,4311,60,58
 
 [StringGrid4]
-Coordinates=2432,4311,70,51
+Coordinates=2432,4311,80,58
 
 [Label63]
-Coordinates=4577,4388,52,51
+Coordinates=4577,4388,60,58
 
 [Label54]
-Coordinates=4204,4311,52,51
+Coordinates=4204,4311,60,58
 
 [Edit30]
-Coordinates=4835,4311,45,51
+Coordinates=4835,4311,51,58
 
 [TabItem3]
-Coordinates=1752,4465,58,33
+Coordinates=1752,4465,69,36
 
 [ComboBox8]
-Coordinates=4348,10,84,123
+Coordinates=4348,10,101,146
 
 [ComboBox9]
-Coordinates=4238,10,84,123
+Coordinates=4238,10,101,146
 
 [Label55]
-Coordinates=3545,4311,52,51
+Coordinates=3545,4311,60,58
 
 [GridPanelLayout5]
-Coordinates=3644,4465,102,33
+Coordinates=3644,4465,118,36
 
 [Label27]
-Coordinates=1913,4311,52,51
+Coordinates=1913,4311,60,58
 
 [Module Settings]
 ModelLayerNames=
@@ -330,57 +330,57 @@ Visible=False
 Coordinates=1567,1294,250,58
 
 [cbInsuranceTypes]
-Coordinates=2584,223,104,123
+Coordinates=2584,223,119,146
 Visible=True
 
 [ListBoxItem4]
-Coordinates=5894,4388,79,33
+Coordinates=5894,4388,89,36
 
 [ListBoxItem6]
-Coordinates=1539,4465,79,33
+Coordinates=1539,4465,89,36
 
 [ListBoxItem7]
-Coordinates=245,4465,79,33
+Coordinates=245,4465,89,36
 
 [ListBoxItem9]
-Coordinates=571,4465,79,33
+Coordinates=571,4465,89,36
 
 [ListBoxItem1]
-Coordinates=1946,4465,79,33
+Coordinates=1946,4465,89,36
 
 [ListBoxItem11]
-Coordinates=3122,4465,84,33
+Coordinates=3122,4465,96,36
 
 [ListBoxItem2]
-Coordinates=4271,4465,79,33
+Coordinates=4271,4465,89,36
 
 [ListBoxItem3]
-Coordinates=4376,4465,79,33
+Coordinates=4376,4465,89,36
 
 [ListBoxItem10]
-Coordinates=5269,4388,84,33
+Coordinates=5269,4388,96,36
 
 [ListBoxItem5]
-Coordinates=5019,4465,79,33
+Coordinates=5019,4465,89,36
 
 [ListBoxItem12]
-Coordinates=4909,4465,84,33
+Coordinates=4909,4465,96,36
 
 [DataModule2.fQryInsuranceTypes]
 Coordinates=1604,1038,210,102
 
 [ListBoxItem8]
-Coordinates=876,4465,79,33
+Coordinates=876,4465,89,36
 
 [DataModule2.dsInsuranceTypes]
 Coordinates=306,132,199,36
 Visible=False
 
 [BindSourceDB3]
-Coordinates=1754,4388,92,51
+Coordinates=1754,4388,106,58
 
 [cbSupportTypes]
-Coordinates=2589,388,95,123
+Coordinates=2589,388,108,146
 Visible=True
 
 [DataModule2.fQrySupportTypes]
@@ -391,7 +391,7 @@ Coordinates=528,152,188,36
 Visible=False
 
 [BindSourceDB4]
-Coordinates=5439,4311,92,51
+Coordinates=5439,4311,106,58
 
 [DataModule2.dsDisorderTypes]
 Coordinates=792,152,192,36
@@ -401,10 +401,10 @@ Visible=False
 Coordinates=2031,1038,202,102
 
 [BindSourceDB5]
-Coordinates=3825,4311,92,51
+Coordinates=3825,4311,106,58
 
 [BindSourceDB2]
-Coordinates=1487,4311,92,51
+Coordinates=1487,4311,106,58
 
 [DataModule3.fQryTherapists]
 Coordinates=1755,448,154,105
@@ -417,7 +417,7 @@ Visible=False
 Coordinates=383,10,187,159
 
 [BindSourceDB6]
-Coordinates=3896,4388,92,51
+Coordinates=3896,4388,106,58
 Visible=True
 
 [DataModule3.fQryTherapyTypes]
@@ -428,7 +428,7 @@ Coordinates=353,296,162,33
 Visible=False
 
 [BindSourceDB7]
-Coordinates=716,4311,92,51
+Coordinates=716,4311,106,58
 
 [DataModule4.dsTransactionTypes]
 Coordinates=689,188,180,33
@@ -438,7 +438,7 @@ Visible=False
 Coordinates=1701,420,189,87
 
 [BindSourceDB8]
-Coordinates=4465,4311,92,51
+Coordinates=4465,4311,106,58
 
 [DataModule5.fQryEvents]
 Coordinates=611,569,136,105
@@ -448,274 +448,275 @@ Coordinates=665,304,127,105
 Visible=True
 
 [cboEvents]
-Coordinates=4128,10,84,123
+Coordinates=4128,10,101,146
 Visible=True
 
 [BindSourceDB9]
-Coordinates=3952,37,96,69
+Coordinates=3952,37,115,80
 Visible=True
 
 [btnClose]
-Coordinates=1117,4388,58,51
+Coordinates=1117,4388,65,58
 Visible=True
 
 [BindSourceDB10]
-Coordinates=3772,4388,98,51
+Coordinates=3772,4388,113,58
 Visible=True
 
 [cboItmFather]
-Coordinates=3232,4465,79,33
+Coordinates=3232,4465,90,36
 
 [cboItmMother]
-Coordinates=5161,4388,82,33
+Coordinates=5161,4388,93,36
 
 [cboItmBrother]
-Coordinates=460,4465,85,33
+Coordinates=460,4465,95,36
 
 [cboItmSister]
-Coordinates=5642,4388,76,33
+Coordinates=5642,4388,86,36
 
 [cboItmuncle]
-Coordinates=3992,4465,75,33
+Coordinates=3992,4465,84,36
 
 [cboItmAmoo]
-Coordinates=2165,4465,77,33
+Coordinates=2165,4465,86,36
 
 [cboItmDaei]
-Coordinates=4176,4465,69,33
+Coordinates=4176,4465,80,36
 
 [cboItmKhaleh]
-Coordinates=1644,4465,82,33
+Coordinates=1644,4465,93,36
 
 [DataModule2.dsPatients]
 Coordinates=1152,1178,155,36
 
 [cboPatientSex]
-Coordinates=2594,895,85,123
+Coordinates=2594,895,101,146
 
 [cbIncomeDecade]
-Coordinates=2587,1078,99,123
+Coordinates=2587,1078,114,146
 Visible=True
 
 [chbxLowIncome]
-Coordinates=2589,121,95,51
+Coordinates=2589,121,107,58
 
 [mPatinetInfo]
-Coordinates=2598,1870,76,51
+Coordinates=2598,1870,87,58
 
 [mPatientAddress]
-Coordinates=2587,673,99,51
+Coordinates=2587,673,112,58
 
 [eParentFName]
-Coordinates=238,454,86,51
+Coordinates=238,454,101,58
 Visible=True
 
 [eParentLname]
-Coordinates=239,10,85,51
+Coordinates=239,10,99,58
 
 [eParentAge]
-Coordinates=246,3625,71,51
+Coordinates=246,3625,82,58
 
 [eParentNationalCode]
-Coordinates=222,3736,118,51
+Coordinates=222,3736,138,58
 
 [cbParentRelation]
-Coordinates=232,4060,99,123
+Coordinates=232,4060,113,146
 Visible=True
 
 [eParentJob]
-Coordinates=246,4234,70,51
+Coordinates=246,4234,80,58
 
 [eParentIncome]
-Coordinates=237,232,88,51
+Coordinates=237,232,102,58
 Visible=True
 
 [cbParentDisorderTypes]
-Coordinates=216,574,130,123
+Coordinates=216,574,150,146
 Visible=True
 
 [cbParentDisorderity]
-Coordinates=225,3847,112,51
+Coordinates=225,3847,128,58
 
 [eParentPhone]
-Coordinates=240,121,83,51
+Coordinates=240,121,96,58
 
 [mParentWorkAddress]
-Coordinates=220,766,122,51
+Coordinates=220,766,140,58
 
 [sgTherapyResume]
-Coordinates=3272,127,106,51
+Coordinates=3272,127,123,58
 Visible=True
 
 [cbTherapistName_Therapy]
-Coordinates=1532,1426,146,123
+Coordinates=1532,1426,170,146
 Visible=True
 
 [cbSessionPlace_Therapy]
-Coordinates=1972,1477,138,123
+Coordinates=1972,1477,160,146
 Visible=True
 
 [cboTherapyTypes_Therapy]
-Coordinates=1967,1090,148,123
+Coordinates=1967,1090,171,146
 Visible=True
 
 [eStartTime_Therapy]
-Coordinates=1985,1651,113,51
+Coordinates=1985,1651,132,58
 
 [eFinishTime_Therapy]
-Coordinates=1981,1762,120,51
+Coordinates=1981,1762,139,58
 
 [mNotes_Therapy]
-Coordinates=1993,1873,97,51
+Coordinates=1993,1873,113,58
 
 [mExcersices_Therapy]
-Coordinates=1980,988,123,51
+Coordinates=1980,988,141,58
 
 [mHomeExcersices_Therapy]
-Coordinates=1966,1264,151,51
+Coordinates=1966,1264,175,58
 
 [eTestDateYear_Test]
-Coordinates=1134,2095,112,51
+Coordinates=1134,2095,133,58
 
 [eTestDateMonth_Test]
-Coordinates=1130,2206,121,51
+Coordinates=1130,2206,141,58
 
 [eTestDateDay_Test]
-Coordinates=1136,877,109,51
+Coordinates=1136,877,129,58
 
 [cbGrade_Test]
-Coordinates=1148,2317,84,123
+Coordinates=1148,2317,101,146
 
 [mDescriptions_Test]
-Coordinates=1134,2500,112,51
+Coordinates=1134,2500,128,58
 Visible=True
 
 [eDateYear_Acc]
-Coordinates=1166,3292,89,51
+Coordinates=1166,3292,104,58
 
 [eDateMonth_Acc]
-Coordinates=1162,3403,97,51
+Coordinates=1162,3403,113,58
 
 [eDateDay_Acc]
-Coordinates=1168,2794,85,51
+Coordinates=1168,2794,100,58
 
 [ePriceValue_Acc]
-Coordinates=1162,3016,97,51
+Coordinates=1162,3016,112,58
 
 [cbTransactionTypes_Acc]
-Coordinates=1141,3118,139,123
+Coordinates=1141,3118,159,146
 Visible=True
 
 [mDescriptions_Acc]
-Coordinates=1155,3514,110,51
+Coordinates=1155,3514,125,58
 Visible=True
 
 [btnNew_Parents]
-Coordinates=1605,4311,95,51
+Coordinates=1605,4311,109,58
 
 [btnEdit_Parents]
-Coordinates=926,4388,93,51
+Coordinates=926,4388,106,58
 
 [btnSave_Parents]
-Coordinates=3322,4388,97,51
+Coordinates=3322,4388,113,58
 
 [btnDelete_Parents]
-Coordinates=6026,4311,104,51
+Coordinates=6026,4311,121,58
 
 [btnCancel_Parents]
-Coordinates=237,4388,107,51
+Coordinates=237,4388,124,58
 
 [btnCancel_Patient]
-Coordinates=3623,4311,104,51
+Coordinates=3623,4311,120,58
 
 [btnDelete_Patient]
-Coordinates=5156,4311,101,51
+Coordinates=5156,4311,117,58
 
 [btnSave_Patient]
-Coordinates=370,4388,94,51
+Coordinates=370,4388,109,58
+Visible=True
 
 [btnEdit_Patient]
-Coordinates=1726,4311,89,51
+Coordinates=1726,4311,102,58
 
 [btnAdd_Patient]
-Coordinates=5910,4311,90,51
+Coordinates=5910,4311,102,58
 
 [btnAdd_Therapy]
-Coordinates=4455,4388,96,51
+Coordinates=4455,4388,109,58
 
 [btnEdit_Therapy]
-Coordinates=3123,4388,95,51
+Coordinates=3123,4388,109,58
 
 [btnSave_Therapy]
-Coordinates=2028,4388,100,51
+Coordinates=2028,4388,116,58
 
 [btnDelete_Therapy]
-Coordinates=1354,4311,107,51
+Coordinates=1354,4311,124,58
 
 [btnCancel_Therapy]
-Coordinates=2297,4311,109,51
+Coordinates=2297,4311,127,58
 
 [btnAdd_Therapy_Session]
-Coordinates=400,4311,141,51
+Coordinates=400,4311,162,58
 
 [btnEdit_Therapy_Session]
-Coordinates=760,4388,140,51
+Coordinates=760,4388,162,58
 
 [btnSave_Therapy_Session]
-Coordinates=3445,4388,145,51
+Coordinates=3445,4388,169,58
 
 [btnDelete_Therapy_Session]
-Coordinates=4906,4311,152,51
+Coordinates=4906,4311,177,58
 
 [btnCancel_Therapy_Session]
-Coordinates=2569,4388,155,51
+Coordinates=2569,4388,179,58
 
 [btnAdd_Acc]
-Coordinates=3367,4311,74,51
+Coordinates=3367,4311,84,58
 
 [btnEdit_Acc]
-Coordinates=2154,4388,74,51
+Coordinates=2154,4388,83,58
 
 [btnSave_Acc]
-Coordinates=4021,4311,79,51
+Coordinates=4021,4311,90,58
 
 [btnDelete_Acc]
-Coordinates=4354,4311,85,51
+Coordinates=4354,4311,98,58
 
 [btnCancel_Acc]
-Coordinates=4719,10,88,51
+Coordinates=4719,10,101,58
 
 [btnAdd_Farhangi]
-Coordinates=4458,10,99,51
+Coordinates=4458,10,113,58
 
 [btnEdit_Farhangi]
-Coordinates=5785,4311,99,51
+Coordinates=5785,4311,113,58
 
 [btnSave_Farhangi]
-Coordinates=4326,4388,103,51
+Coordinates=4326,4388,119,58
 
 [btnDelete_Farhangi]
-Coordinates=4583,10,110,51
+Coordinates=4583,10,128,58
 
 [btnCancel_Farhangi]
-Coordinates=2906,4388,113,51
+Coordinates=2906,4388,130,58
 
 [BindSourceDB11]
-Coordinates=2373,769,111,375
+Coordinates=2373,769,133,454
 
 [BindSourceDB12]
-Coordinates=2763,1261,137,105
+Coordinates=2763,1261,164,124
 
 [dmPatints.fQryPatients]
 Visible=False
-Coordinates=632,87,128,33
+Coordinates=632,87,146,36
 
 [dmPatints.fQryIranProvinces]
 Visible=False
-Coordinates=409,122,156,33
+Coordinates=409,122,179,36
 
 [dmPatints.fQryPatientFamilyMembers]
-Coordinates=3207,3410,200,33
+Coordinates=3207,3410,231,36
 Visible=False
 
 [dmPatints.dsInsuranceTypes]
@@ -728,7 +729,7 @@ Coordinates=403,531,128,33
 Coordinates=133,121,119,33
 
 [dmPatints.fQryDisorderTypes]
-Coordinates=550,810,160,33
+Coordinates=550,810,183,36
 Visible=False
 
 [dmPatints.dsDisorderTypes]
@@ -738,283 +739,283 @@ Coordinates=0,0,151,33
 Coordinates=192,1,148,33
 
 [dmPatints.fQryInsuranceTypes]
-Coordinates=1450,1500,166,33
+Coordinates=1450,1500,191,36
 Visible=False
 
 [dmPatints.fQrySupportTypes]
-Coordinates=1267,1500,157,33
+Coordinates=1267,1500,180,36
 Visible=False
 
 [LiveBindingsBindNavigateCancel1]
-Coordinates=626,323,184,33
+Coordinates=626,323,212,36
 
 [LiveBindingsBindNavigateInsert1]
-Coordinates=626,441,178,33
+Coordinates=626,441,204,36
 
 [ActionList1]
-Coordinates=54,121,70,33
+Coordinates=54,121,78,36
 
 [LiveBindingsBindNavigatePost1]
-Coordinates=1073,175,172,33
+Coordinates=1073,175,197,36
 
 [LiveBindingsBindNavigateEdit1]
-Coordinates=1073,230,170,33
+Coordinates=1073,230,194,36
 
 [LiveBindingsBindNavigateDelete1]
-Coordinates=1073,285,181,33
+Coordinates=1073,285,209,36
 
 [dmPatints.fQryParents]
-Coordinates=381,690,125,33
+Coordinates=381,690,144,36
 Visible=False
 
 [dmPatints.dsParents]
 Coordinates=141,690,116,33
 
 [BindSourceDB13]
-Coordinates=10,1589,109,321
+Coordinates=10,1589,131,388
 
 [Label68]
-Coordinates=1055,4311,52,51
+Coordinates=1055,4311,60,58
 
 [mParentNotes]
-Coordinates=239,343,84,51
+Coordinates=239,343,96,58
 
 [Label69]
-Coordinates=1598,4388,52,51
+Coordinates=1598,4388,60,58
 
 [cbPatientDisorderType]
-Coordinates=1962,4274,127,33
+Coordinates=1962,4274,146,36
 Visible=False
 
 [BindSourceDB14]
-Coordinates=426,565,141,141
+Coordinates=426,565,169,152
 
 [LiveBindingsBindNavigateDelete2]
-Coordinates=378,71,181,33
+Coordinates=378,71,209,36
 
 [LiveBindingsBindNavigateCancel2]
-Coordinates=378,174,184,33
+Coordinates=378,174,212,36
 
 [LiveBindingsBindNavigateEdit2]
-Coordinates=378,226,170,33
+Coordinates=378,226,194,36
 
 [LiveBindingsBindNavigateInsert2]
-Coordinates=378,278,178,33
+Coordinates=378,278,204,36
 
 [LiveBindingsBindNavigatePost2]
-Coordinates=378,330,172,33
+Coordinates=378,330,197,36
 
 [BindSourceDB15]
-Coordinates=2764,397,138,105
+Coordinates=2764,397,165,124
 
 [BindSourceDB16]
-Coordinates=2768,232,147,105
+Coordinates=2768,232,176,124
 
 [dmPatints.dsParentTypes]
 Coordinates=628,142,140,33
 
 [dmPatints.fdQryParentTypes]
-Coordinates=1570,1640,156,33
+Coordinates=1570,1640,180,36
 Visible=False
 
 [BindSourceDB17]
-Coordinates=411,4069,138,105
+Coordinates=411,4069,165,124
 Visible=True
 
 [dmTherapy_.fQryTherapists]
-Coordinates=4434,20,151,33
+Coordinates=4434,20,175,36
 Visible=False
 
 [dmTherapy_.dsTherapists]
-Coordinates=636,1,142,33
+Coordinates=636,1,164,36
 
 [dmTherapy_.dsThrapySessions]
-Coordinates=628,555,170,33
+Coordinates=628,555,196,36
 
 [dmTherapy_.fQrySessions]
-Coordinates=1741,10,144,33
+Coordinates=1741,10,167,36
 Visible=False
 
 [dmTherapy_.fQryTherapyTypes]
-Coordinates=3836,10,169,33
+Coordinates=3836,10,196,36
 Visible=False
 
 [dmTherapy_.dsSessions]
-Coordinates=471,1094,135,33
+Coordinates=471,1094,156,36
 
 [dmTherapy_.fQryTherapySessions]
-Coordinates=3742,10,184,159
+Coordinates=3742,10,214,36
 Visible=False
 
 [dmTherapy_.dsTherapyTypes]
-Coordinates=413,1,160,33
+Coordinates=413,1,185,36
 
 [BindSourceDB18]
-Coordinates=3730,370,134,159
+Coordinates=3730,370,160,174
 
 [BindSourceDB19]
-Coordinates=1741,10,128,249
+Coordinates=1741,10,153,300
 
 [BindSourceDB20]
-Coordinates=2195,1099,98,87
+Coordinates=2195,1099,113,102
 
 [dmTherapy_.fQryRooms]
-Coordinates=1870,710,134,33
+Coordinates=1870,710,155,36
 Visible=False
 
 [BindSourceDB21]
-Coordinates=1870,710,119,105
+Coordinates=1870,710,142,124
 
 [tbTherapyResume]
-Coordinates=4921,4388,104,33
+Coordinates=4921,4388,120,36
 
 [tbNewTherapySession]
-Coordinates=5744,4388,124,33
+Coordinates=5744,4388,144,36
 
 [LiveBindingsBindNavigateInsert3]
-Coordinates=164,70,178,33
+Coordinates=164,70,204,36
 
 [LiveBindingsBindNavigateDelete3]
-Coordinates=164,70,181,33
+Coordinates=164,70,209,36
 
 [LiveBindingsBindNavigateEdit3]
-Coordinates=164,70,170,33
+Coordinates=164,70,194,36
 
 [LiveBindingsBindNavigatePost3]
-Coordinates=164,70,172,33
+Coordinates=164,70,197,36
 
 [LiveBindingsBindNavigateCancel3]
-Coordinates=164,70,184,33
+Coordinates=164,70,212,36
 
 [dmPatints.fQryPatientNames]
-Coordinates=3936,4525,156,33
+Coordinates=4886,4575,180,36
 Visible=True
 
 [BindSourceDB22]
-Coordinates=3770,4515,139,213
+Coordinates=4696,4565,166,224
 
 [cbPatientName_Therapy_NewSession]
-Coordinates=663,2611,200,123
+Coordinates=663,2611,235,146
 Visible=True
 
 [dmTherapy_.fQryPriodicalTests]
-Coordinates=400,550,170,33
+Coordinates=400,550,196,36
 Visible=False
 
 [BindSourceDB23]
-Coordinates=887,2014,98,177
+Coordinates=887,2014,113,212
 
 [dsPatient]
-Coordinates=2941,10,83,357
+Coordinates=2941,10,99,432
 Visible=True
 
 [ePatientLName]
-Coordinates=2592,1759,88,51
+Coordinates=2592,1759,103,58
 
 [ePatientFName]
-Coordinates=2592,1426,88,51
+Coordinates=2592,1426,104,58
 
 [ePatientNationalCode]
-Coordinates=2576,1537,120,51
+Coordinates=2576,1537,140,58
 
 [eBirthMonth]
-Coordinates=2599,784,74,51
+Coordinates=2599,784,84,58
 
 [eBirthYear]
-Coordinates=2603,562,66,51
+Coordinates=2603,562,75,58
 
 [eBirthDay]
-Coordinates=2605,10,62,51
+Coordinates=2605,10,71,58
 
 [Label70]
-Coordinates=2828,4388,52,51
+Coordinates=2828,4388,60,58
 
 [cbPatient_Test]
-Coordinates=720,2059,87,123
+Coordinates=720,2059,101,146
 Visible=True
 
 [ListBoxItem13]
-Coordinates=1836,4465,84,33
+Coordinates=1836,4465,96,36
 
 [ListBoxItem19]
-Coordinates=3772,4465,84,33
+Coordinates=3772,4465,96,36
 
 [ListBoxItem14]
-Coordinates=4716,4465,84,33
+Coordinates=4716,4465,96,36
 
 [ListBoxItem15]
-Coordinates=4811,4388,84,33
+Coordinates=4811,4388,96,36
 
 [ListBoxItem16]
-Coordinates=1220,4465,84,33
+Coordinates=1220,4465,96,36
 
 [ListBoxItem20]
-Coordinates=350,4465,84,33
+Coordinates=350,4465,96,36
 
 [ListBoxItem21]
-Coordinates=1110,4465,84,33
+Coordinates=1110,4465,96,36
 
 [ListBoxItem17]
-Coordinates=3882,4465,84,33
+Coordinates=3882,4465,96,36
 
 [ListBoxItem18]
-Coordinates=5051,4388,84,33
+Coordinates=5051,4388,96,36
 
 [ListBoxItem22]
-Coordinates=3337,4465,84,33
+Coordinates=3337,4465,96,36
 
 [LiveBindingsBindNavigateInsert4]
-Coordinates=164,70,178,33
+Coordinates=164,70,204,36
 
 [LiveBindingsBindNavigateDelete4]
-Coordinates=164,70,181,33
+Coordinates=164,70,209,36
 
 [LiveBindingsBindNavigateEdit4]
-Coordinates=164,70,170,33
+Coordinates=164,70,194,36
 
 [LiveBindingsBindNavigatePost4]
-Coordinates=164,70,172,33
+Coordinates=164,70,197,36
 
 [LiveBindingsBindNavigateCancel4]
-Coordinates=164,70,184,33
+Coordinates=164,70,212,36
 
 [cbTherapist_test]
-Coordinates=1142,1426,96,123
+Coordinates=1142,1426,110,146
 Visible=True
 
 [dmTherapy_.fQryPatientsRep]
-Coordinates=611,862,159,33
+Coordinates=611,862,184,36
 Visible=False
 
 [BindSourceDB24]
-Coordinates=3050,10,98,51
+Coordinates=3050,10,198,234
 
 [Label34]
-Coordinates=1201,4388,52,51
+Coordinates=1201,4388,60,58
 
 [cbPatientName_Info_Relations]
-Coordinates=199,2611,165,123
+Coordinates=199,2611,192,146
 Visible=True
 
 [tcGeneralInfo]
-Coordinates=2502,4465,80,33
+Coordinates=2502,4465,92,36
 Visible=True
 
 [tcAllTabs]
-Coordinates=790,4465,60,33
+Coordinates=790,4465,68,36
 
 [tcAccounting]
-Coordinates=1330,4465,80,33
+Coordinates=1330,4465,88,36
 Visible=True
 
 [tcEducational]
-Coordinates=138,4465,81,33
+Coordinates=138,4465,92,36
 
 [tcEvents]
-Coordinates=4826,4465,57,33
+Coordinates=4826,4465,64,36
 
 [tcTherapy]
-Coordinates=5379,4388,63,33
+Coordinates=5379,4388,72,36
 
 [dmAccounting_.fQryTransactionTypes]
 Coordinates=820,490,204,33
@@ -1025,40 +1026,40 @@ Coordinates=716,248,180,33
 Visible=False
 
 [BindSourceDB25]
-Coordinates=900,3073,139,177
+Coordinates=900,3073,167,212
 
 [BindSourceDB26]
-Coordinates=1360,3127,98,87
+Coordinates=1360,3127,113,102
 
 [Label52]
-Coordinates=3289,4311,52,51
+Coordinates=3289,4311,60,58
 
 [cbPatientName_Acc]
-Coordinates=707,3118,113,123
+Coordinates=707,3118,131,146
 
 [LiveBindingsBindNavigateInsert5]
-Coordinates=164,70,178,33
+Coordinates=164,70,204,36
 
 [LiveBindingsBindNavigateDelete5]
-Coordinates=164,70,181,33
+Coordinates=164,70,209,36
 
 [LiveBindingsBindNavigateEdit5]
-Coordinates=164,70,170,33
+Coordinates=164,70,194,36
 
 [LiveBindingsBindNavigatePost5]
-Coordinates=164,70,172,33
+Coordinates=164,70,197,36
 
 [LiveBindingsBindNavigateCancel5]
-Coordinates=164,70,184,33
+Coordinates=164,70,212,36
 
 [tbNewTransaction]
-Coordinates=981,4465,103,33
+Coordinates=981,4465,118,36
 
 [tbTransactions]
-Coordinates=820,3360,88,33
+Coordinates=820,3360,99,36
 
 [sgTransactionList]
-Coordinates=950,2950,103,51
+Coordinates=950,2950,116,58
 Visible=True
 
 [dmAccounting_.fQryTransactionsRep]
@@ -1066,29 +1067,5 @@ Coordinates=690,2870,199,33
 Visible=False
 
 [BindSourceDB27]
-Coordinates=690,2870,98,51
-
-[NavigatorBindSourceDB25]
-Coordinates=273,1,145,51
-
-[NavigatorBindSourceDB11]
-Coordinates=456,1,145,51
-
-[NavigatorBindSourceDB1]
-Coordinates=88,210,140,51
-
-[NavigatorBindSourceDB23]
-Coordinates=798,1,145,51
-
-[NavigatorBindSourceDB13]
-Coordinates=109,1,145,51
-
-[NavigatorBindSourceDB19]
-Coordinates=798,71,145,51
-
-[BindNavigator2]
-Coordinates=0,0,90,51
-
-[BindNavigator1]
-Coordinates=386,71,90,51
+Coordinates=690,2870,113,58
 

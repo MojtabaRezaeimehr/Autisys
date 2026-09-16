@@ -3,9 +3,11 @@ unit uLogin;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Layouts, FMX.Controls.Presentation, FMX.Edit;
+  FMX.Layouts, FMX.Controls.Presentation, FMX.Edit,
+  uAuthenticationService, Main; // <-- for IAuthenticationService
 
 type
   TfLogin = class(TForm)
@@ -22,37 +24,36 @@ type
     procedure btnExitClick(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
   private
-    { Private declarations }
+    FAuthService: IAuthenticationService;
   public
-    { Public declarations }
+    constructor Create(AOwner: TComponent;
+      AAuthService: IAuthenticationService); reintroduce;
   end;
-
-var
-  fLogin: TfLogin;
 
 implementation
 
 {$R *.fmx}
 
-uses Main;
+constructor TfLogin.Create(AOwner: TComponent;
+  AAuthService: IAuthenticationService);
+begin
+  inherited Create(AOwner);
+  FAuthService := AAuthService;
+end;
 
 procedure TfLogin.btnExitClick(Sender: TObject);
 begin
-  Application.Terminate;
+  ModalResult := mrCancel; // cleaner than Application.Terminate for modal form
 end;
 
 procedure TfLogin.btnLoginClick(Sender: TObject);
-var
-  fMainScreen: TfMainScreen;
 begin
-  // Ensure the form is not auto-created in Project Options as per step 1
-  fMainScreen := TfMainScreen.Create(nil); // Use nil if Login is the owner, or Self
-
-  try
-    Self.Hide;
-    fMainScreen.ShowModal;
-  finally
-    fMainScreen.Free;
+  if FAuthService.Login(eUserName.Text, ePassword.Text) then
+    ModalResult := mrOK
+  else
+  begin
+    ShowMessage('Invalid username or password.');
+    ePassword.SetFocus;
   end;
 end;
 

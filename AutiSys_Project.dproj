@@ -4,7 +4,7 @@
         <ProjectVersion>19.4</ProjectVersion>
         <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -136,48 +136,42 @@
         </DelphiCompile>
         <DCCReference Include="Main.pas">
             <Form>fMainScreen</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="forms\uLogin.pas">
             <Form>fLogin</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="forms\uProfile.pas">
             <Form>fProfile</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="data\dmServer.pas">
             <Form>dmServer_</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="data\dmPatients.pas">
             <Form>dmPatints</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="data\dmTherapy.pas">
             <Form>dmTherapy_</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="forms\uSessionDetails.pas">
             <Form>Form1</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="data\dmAccounting.pas">
             <Form>dmAccounting_</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="data\dmEvents.pas">
             <Form>dmEvents_</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="utils\uFunctions.pas"/>
         <DCCReference Include="utils\PersianDate_Component\uJalaliCalendar.pas"/>
         <DCCReference Include="utils\uSimpleDatePicker.pas"/>
+        <DCCReference Include="utils\uUserRepository.pas"/>
+        <DCCReference Include="utils\uUserRepository.FireDAC.pas"/>
+        <DCCReference Include="utils\uAuthenticationService.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
