@@ -13,13 +13,14 @@ object fProfile: TfProfile
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop, iPhone, iPad]
   OnCreate = FormCreate
+  OnClose = FormClose
   DesignerMasterStyle = 0
   object tcAllTabs: TTabControl
     Align = Client
     Size.Width = 699.000000000000000000
     Size.Height = 565.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     TabPosition = PlatformDefault
     Sizes = (
@@ -41,7 +42,7 @@ object fProfile: TfProfile
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.Font.StyleExt = {00070000000000000004000000}
       StyledSettings = [FontColor]
-      IsSelected = False
+      IsSelected = True
       Size.Width = 111.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
@@ -518,8 +519,8 @@ object fProfile: TfProfile
             Size.Height = 43.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 14
-            Viewport.Width = 488.000000000000000000
-            Viewport.Height = 43.000000000000000000
+            Viewport.Width = 484.000000000000000000
+            Viewport.Height = 39.000000000000000000
           end
           object GridPanelLayout1: TGridPanelLayout
             Align = Bottom
@@ -613,11 +614,8 @@ object fProfile: TfProfile
               TextSettings.Font.StyleExt = {00070000000000000004000000}
             end
             object btnSave_Patient: TButton
-              Action = LiveBindingsBindNavigatePost1
               Align = Client
-              Enabled = True
               StyledSettings = [FontColor]
-              ImageIndex = -1
               Margins.Left = 5.000000000000000000
               Margins.Top = 5.000000000000000000
               Margins.Right = 5.000000000000000000
@@ -630,6 +628,7 @@ object fProfile: TfProfile
               TextSettings.Font.Family = 'IRANSansWebFaNum'
               TextSettings.Font.Size = 14.000000000000000000
               TextSettings.Font.StyleExt = {00070000000000000004000000}
+              OnClick = btnSave_PatientClick
             end
             object btnEdit_Patient: TButton
               Action = LiveBindingsBindNavigateEdit1
@@ -715,8 +714,8 @@ object fProfile: TfProfile
             Size.Height = 66.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 13
-            Viewport.Width = 488.000000000000000000
-            Viewport.Height = 66.000000000000000000
+            Viewport.Width = 484.000000000000000000
+            Viewport.Height = 62.000000000000000000
           end
           object NavigatorBindSourceDB11: TBindNavigator
             Align = Bottom
@@ -938,11 +937,8 @@ object fProfile: TfProfile
               TextSettings.Font.StyleExt = {00070000000000000004000000}
             end
             object btnSave_Parents: TButton
-              Action = LiveBindingsBindNavigatePost2
               Align = Client
-              Enabled = True
               StyledSettings = [FontColor]
-              ImageIndex = -1
               Margins.Left = 5.000000000000000000
               Margins.Top = 5.000000000000000000
               Margins.Right = 5.000000000000000000
@@ -951,9 +947,11 @@ object fProfile: TfProfile
               Size.Height = 40.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 2
+              Text = #1584#1582#1740#1585#1607
               TextSettings.Font.Family = 'IRANSansWebFaNum'
               TextSettings.Font.Size = 14.000000000000000000
               TextSettings.Font.StyleExt = {00070000000000000004000000}
+              OnClick = btnSave_ParentsClick
             end
             object btnEdit_Parents: TButton
               Action = LiveBindingsBindNavigateEdit2
@@ -1252,8 +1250,8 @@ object fProfile: TfProfile
             Size.Height = 103.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 11
-            Viewport.Width = 508.000000000000000000
-            Viewport.Height = 103.000000000000000000
+            Viewport.Width = 504.000000000000000000
+            Viewport.Height = 99.000000000000000000
           end
           object mParentNotes: TMemo
             Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
@@ -1270,8 +1268,8 @@ object fProfile: TfProfile
             Size.Height = 43.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 12
-            Viewport.Width = 508.000000000000000000
-            Viewport.Height = 43.000000000000000000
+            Viewport.Width = 504.000000000000000000
+            Viewport.Height = 39.000000000000000000
           end
           object Label68: TLabel
             Anchors = [akTop, akRight]
@@ -1340,7 +1338,7 @@ object fProfile: TfProfile
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.Font.StyleExt = {00070000000000000004000000}
       StyledSettings = [FontColor]
-      IsSelected = True
+      IsSelected = False
       Size.Width = 60.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
@@ -1407,8 +1405,8 @@ object fProfile: TfProfile
             TabOrder = 1
             RowCount = 0
             Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-            Viewport.Width = 679.000000000000000000
-            Viewport.Height = 439.000000000000000000
+            Viewport.Width = 675.000000000000000000
+            Viewport.Height = 414.000000000000000000
           end
           object NavigatorBindSourceDB1: TBindNavigator
             Align = Bottom
@@ -1747,8 +1745,8 @@ object fProfile: TfProfile
             Size.Height = 118.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 8
-            Viewport.Width = 193.000000000000000000
-            Viewport.Height = 118.000000000000000000
+            Viewport.Width = 189.000000000000000000
+            Viewport.Height = 114.000000000000000000
           end
           object cbTherapistName_Therapy: TComboBox
             Anchors = [akTop, akRight]
@@ -1774,8 +1772,8 @@ object fProfile: TfProfile
             Size.Height = 118.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 6
-            Viewport.Width = 183.000000000000000000
-            Viewport.Height = 118.000000000000000000
+            Viewport.Width = 179.000000000000000000
+            Viewport.Height = 114.000000000000000000
           end
           object mExcersices_Therapy: TMemo
             Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
@@ -1792,8 +1790,8 @@ object fProfile: TfProfile
             Size.Height = 118.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 7
-            Viewport.Width = 179.000000000000000000
-            Viewport.Height = 118.000000000000000000
+            Viewport.Width = 175.000000000000000000
+            Viewport.Height = 114.000000000000000000
           end
           object cboTherapyTypes_Therapy: TComboBox
             Anchors = [akTop, akRight]
@@ -2434,8 +2432,8 @@ object fProfile: TfProfile
             Size.Height = 118.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 6
-            Viewport.Width = 450.000000000000000000
-            Viewport.Height = 118.000000000000000000
+            Viewport.Width = 446.000000000000000000
+            Viewport.Height = 114.000000000000000000
           end
           object cbPatient_Test: TComboBox
             Anchors = [akTop, akRight]
@@ -2575,8 +2573,8 @@ object fProfile: TfProfile
             TabOrder = 1
             RowCount = 4
             Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-            Viewport.Width = 679.000000000000000000
-            Viewport.Height = 439.000000000000000000
+            Viewport.Width = 675.000000000000000000
+            Viewport.Height = 414.000000000000000000
           end
         end
         object tbNewTransaction: TTabItem
@@ -2932,8 +2930,8 @@ object fProfile: TfProfile
             Size.Height = 118.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 6
-            Viewport.Width = 450.000000000000000000
-            Viewport.Height = 118.000000000000000000
+            Viewport.Width = 446.000000000000000000
+            Viewport.Height = 114.000000000000000000
           end
           object Label60: TLabel
             Anchors = [akTop, akRight]
@@ -3054,8 +3052,8 @@ object fProfile: TfProfile
             TabOrder = 1
             RowCount = 1
             Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-            Viewport.Width = 679.000000000000000000
-            Viewport.Height = 456.000000000000000000
+            Viewport.Width = 675.000000000000000000
+            Viewport.Height = 431.000000000000000000
           end
           object BindNavigator2: TBindNavigator
             Align = Bottom
@@ -3398,8 +3396,8 @@ object fProfile: TfProfile
             Size.Height = 118.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 6
-            Viewport.Width = 450.000000000000000000
-            Viewport.Height = 118.000000000000000000
+            Viewport.Width = 446.000000000000000000
+            Viewport.Height = 114.000000000000000000
           end
           object Label67: TLabel
             Anchors = [akTop, akRight]
@@ -3476,8 +3474,8 @@ object fProfile: TfProfile
             TabOrder = 2
             RowCount = 1
             Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-            Viewport.Width = 679.000000000000000000
-            Viewport.Height = 481.000000000000000000
+            Viewport.Width = 675.000000000000000000
+            Viewport.Height = 456.000000000000000000
           end
         end
       end

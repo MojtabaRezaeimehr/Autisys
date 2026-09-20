@@ -23,6 +23,8 @@ function RunSQLQuery(const AConnection: TFDConnection;
                      const AParams: array of string;
                      const ASkipExecute: Boolean = False): TFDQuery;
 
+function IsValidIranianNationalCode(const ACode: string): Boolean;
+
 implementation
 
 
@@ -60,6 +62,31 @@ begin
     Q.Free;
     raise;          // خطا را دوباره پرتاب می‌کنیم
   end;
+end;
+
+function IsValidIranianNationalCode(const ACode: string): Boolean;
+var
+  Code: string;
+  i, Sum, Remainder: Integer;
+begin
+  Result := False;
+  Code := Trim(ACode);
+
+  if Length(Code) <> 10 then Exit;
+
+  for i := 1 to 10 do
+    if not CharInSet(Code[i], ['0'..'9']) then Exit;
+
+  // Reject codes with all identical digits (e.g. 0000000000)
+  if (Code = StringOfChar(Code[1], 10)) then Exit;
+
+  Sum := 0;
+  for i := 1 to 9 do
+    Sum := Sum + StrToInt(Code[i]) * (10 - i + 1);
+
+  Remainder := Sum mod 11;
+  Result := (Remainder < 2) and (StrToInt(Code[10]) = Remainder)
+         or (Remainder >= 2) and (StrToInt(Code[10]) = 11 - Remainder);
 end;
 
 end.   { unit uFunctions }

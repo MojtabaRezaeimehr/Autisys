@@ -1,0 +1,64 @@
+program AutiSys_Project;
+
+uses
+  System.StartUpCopy,
+  System.UITypes,
+  FMX.Forms,
+  Main in 'Main.pas' {fMainScreen},
+  uLogin in 'forms\uLogin.pas' {fLogin},
+  dmServer in 'data\dmServer.pas' {dmServer_: TDataModule},
+  uUserRepository in 'utils\uUserRepository.pas',
+  uUserRepository.FireDAC in 'utils\uUserRepository.FireDAC.pas',
+  uAuthenticationService in 'utils\uAuthenticationService.pas',
+  uPatientRepository in 'utils\uPatientRepository.pas',
+  uPatientRepository.FireDAC in 'utils\uPatientRepository.FireDAC.pas',
+  uPatientService in 'utils\uPatientService.pas';
+
+{$R *.res}
+
+var
+  UserRepo: IUserRepository;
+  AuthService: IAuthenticationService;
+  PatientRepo: IPatientRepository;
+  PatientService: IPatientService;
+  LoginForm: TfLogin;
+
+begin
+  Application.Initialize;
+
+  // 1. Create data module (connection)
+  dmServer_ := TdmServer_.Create(nil);
+  try
+    // 2. Configure connection
+    dmServer_.FdServerConnection.DriverName := 'MSSQL';
+    dmServer_.FdServerConnection.Params.Values['Server']    := 'localhost';
+    dmServer_.FdServerConnection.Params.Values['Database']  := 'AutiSys';
+    dmServer_.FdServerConnection.Params.Values['User_Name'] := 'sa';
+    dmServer_.FdServerConnection.Params.Values['Password']  := 'amf@sql2022';
+    dmServer_.FdServerConnection.LoginPrompt := False;
+    dmServer_.FdServerConnection.Connected := True;
+
+    // 3. Create user repository + auth service
+    UserRepo := TFireDACUserRepository.Create(dmServer_.FdServerConnection);
+    AuthService := TAuthenticationService.Create(UserRepo);
+
+    // 4. Create patient repository + patient service
+    PatientRepo := TFireDACPatientRepository.Create(dmServer_.FdServerConnection);
+    PatientService := TPatientService.Create(PatientRepo);
+
+    // 5. Show login form
+    LoginForm := TfLogin.Create(nil, AuthService);
+    try
+      if LoginForm.ShowModal = mrOK then
+      begin
+        // 6. Create the main form and inject the service
+        fMainScreen := TfMainScreen.Create(nil, PatientService);
+        Application.Run;
+      end;
+    finally
+      LoginForm.Free;
+    end;
+  finally
+    dmServer_.Free;
+  end;
+end.

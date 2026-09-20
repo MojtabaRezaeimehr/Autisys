@@ -3,8 +3,6 @@ object dmTherapy_: TdmTherapy_
   Height = 431
   Width = 406
   object fQryTherapySessions: TFDQuery
-    Active = True
-    Connection = dmServer_.FdServerConnection
     SQL.Strings = (
       'select * from vw_TherapySessionsReport')
     Left = 48
@@ -55,7 +53,6 @@ object dmTherapy_: TdmTherapy_
     Top = 72
   end
   object fQryTherapists: TFDQuery
-    Connection = dmServer_.FdServerConnection
     SQL.Strings = (
       
         'SELECT Id,FirstName+'#39' '#39'+LastName AS FullName,SpecialtyId FROM Th' +
@@ -87,8 +84,6 @@ object dmTherapy_: TdmTherapy_
     Top = 136
   end
   object fQryTherapyTypes: TFDQuery
-    Active = True
-    Connection = dmServer_.FdServerConnection
     SQL.Strings = (
       'SELECT [Id]'
       '      ,[Title]'
@@ -113,7 +108,6 @@ object dmTherapy_: TdmTherapy_
     Top = 200
   end
   object fQrySessions: TFDQuery
-    Connection = dmServer_.FdServerConnection
     SQL.Strings = (
       'SELECT * FROM [AutiSys].[dbo].[Sessions]'
       'ORDER BY SessionDate,StartTime')
@@ -170,7 +164,6 @@ object dmTherapy_: TdmTherapy_
     end
   end
   object fQryRooms: TFDQuery
-    Connection = dmServer_.FdServerConnection
     SQL.Strings = (
       'SELECT * FROM [AutiSys].[dbo].[Rooms]')
     Left = 48
@@ -188,7 +181,6 @@ object dmTherapy_: TdmTherapy_
     end
   end
   object fQryPriodicalTests: TFDQuery
-    Connection = dmServer_.FdServerConnection
     SQL.Strings = (
       'SELECT * FROM [AutiSys].[dbo].[PriodicalTests]')
     Left = 184
@@ -229,7 +221,6 @@ object dmTherapy_: TdmTherapy_
     end
   end
   object fQryPatientsRep: TFDQuery
-    Connection = dmServer_.FdServerConnection
     SQL.Strings = (
       'SELECT s.Id'
       '      ,p.FirstName + '#39' '#39'+p.LastName as PatientFullname'

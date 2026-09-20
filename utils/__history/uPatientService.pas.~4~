@@ -1,0 +1,37 @@
+unit uPatientService;
+
+interface
+
+uses
+  uPatientRepository;
+
+type
+  IPatintsService = Interface
+    ['{82629277-50E4-4095-A3A0-C4F8876DC8EF}']
+    function GetPatientCount: integer;
+  End;
+
+  TPatientService = Class(TInterfacedObject, IPatintsService)
+  private
+    FPatientRepository: IPatientRepository;
+  public
+    constructor Create(APatientsRepository: IPatientRepository);
+    function GetPatientCount: integer;
+  End;
+
+implementation
+
+{ TPatientService }
+
+constructor TPatientService.Create(APatientsRepository: IPatientRepository);
+begin
+  inherited Create;
+  FPatientRepository := APatientsRepository;
+end;
+
+function TPatientService.GetPatientCount: integer;
+begin
+  Result := FPatientRepository.GetPatientCount;
+end;
+
+end.

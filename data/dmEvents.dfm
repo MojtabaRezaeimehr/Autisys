@@ -8,8 +8,6 @@ object dmEvents_: TdmEvents_
     Top = 24
   end
   object fQryEvents: TFDQuery
-    Active = True
-    Connection = dmServer_.FdServerConnection
     SQL.Strings = (
       'SELECT id,EventName,EventTypeId FROM [Events]')
     Left = 64

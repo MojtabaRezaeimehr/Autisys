@@ -172,6 +172,9 @@
         <DCCReference Include="utils\uUserRepository.pas"/>
         <DCCReference Include="utils\uUserRepository.FireDAC.pas"/>
         <DCCReference Include="utils\uAuthenticationService.pas"/>
+        <DCCReference Include="utils\uPatientRepository.pas"/>
+        <DCCReference Include="utils\uPatientRepository.FireDAC.pas"/>
+        <DCCReference Include="utils\uPatientService.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -214,6 +217,12 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="Win32\Debug\AutiSys_Project.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>AutiSys_Project.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Release\AutiSys_Project.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>AutiSys_Project.exe</RemoteName>
                         <Overwrite>true</Overwrite>

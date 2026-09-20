@@ -34,7 +34,10 @@ begin
   for i := 0 to ComponentCount-1 do
   begin
     if Components[i] is TFDQuery then
-      (Components[i] as TFDQuery).Active := true;
+    begin
+      (Components[i] as TFDQuery).Connection := dmServer_.FdServerConnection;
+      (Components[i] as TFDQuery).Active := True;
+    end;
   end;
 end;
 

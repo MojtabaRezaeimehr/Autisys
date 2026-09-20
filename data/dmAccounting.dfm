@@ -3,7 +3,6 @@ object dmAccounting_: TdmAccounting_
   Height = 423
   Width = 346
   object fQryTransactionTypes: TFDQuery
-    Connection = dmServer_.FdServerConnection
     SQL.Strings = (
       'SELECT [Id]'
       '      ,[Title]'
@@ -12,8 +11,6 @@ object dmAccounting_: TdmAccounting_
     Top = 24
   end
   object fQryTransactions: TFDQuery
-    Active = True
-    Connection = dmServer_.FdServerConnection
     SQL.Strings = (
       'SELECT *'
       '  FROM [dbo].[Transactions]')
@@ -57,8 +54,6 @@ object dmAccounting_: TdmAccounting_
     end
   end
   object fQryTransactionsRep: TFDQuery
-    Active = True
-    Connection = dmServer_.FdServerConnection
     SQL.Strings = (
       'SELECT T.[Id]'
       '      ,[PatientId]'

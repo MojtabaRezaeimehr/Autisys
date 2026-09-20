@@ -9,7 +9,6 @@ object dmServer_: TdmServer_
       'Server=127.0.0.1'
       'LoginTimeout=300'
       'DriverID=MSSQL')
-    Connected = True
     LoginPrompt = False
     Left = 144
     Top = 72

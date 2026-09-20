@@ -3,7 +3,8 @@ unit dmPatients;
 interface
 
 uses
-  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  System.SysUtils, System.Classes, Winapi.Windows,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client;
@@ -83,12 +84,21 @@ uses dmServer;
 procedure TdmPatints.DataModuleCreate(Sender: TObject);
 var
   i: integer;
+  Q: TFDQuery;
 begin
   for i := 0 to ComponentCount-1 do
-  begin
     if Components[i] is TFDQuery then
-      (Components[i] as TFDQuery).Active := true;
-  end;
+    begin
+      Q := Components[i] as TFDQuery;
+      Q.Connection := dmServer_.FdServerConnection;
+      try
+        Q.Active := True;
+      except
+        on E: Exception do
+          { log silently — do not crash the whole module on one bad query }
+          OutputDebugString(PChar('dmPatients: failed to open ' + Q.Name + ': ' + E.Message));
+      end;
+    end;
 end;
 
 end.

@@ -23,6 +23,8 @@ type
     ePassword: TEdit;
     procedure btnExitClick(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure eUserNameExit(Sender: TObject);
   private
     FAuthService: IAuthenticationService;
   public
@@ -39,6 +41,16 @@ constructor TfLogin.Create(AOwner: TComponent;
 begin
   inherited Create(AOwner);
   FAuthService := AAuthService;
+end;
+
+procedure TfLogin.eUserNameExit(Sender: TObject);
+begin
+  ePassword.SetFocus;
+end;
+
+procedure TfLogin.FormShow(Sender: TObject);
+begin
+  eUserName.SetFocus;
 end;
 
 procedure TfLogin.btnExitClick(Sender: TObject);

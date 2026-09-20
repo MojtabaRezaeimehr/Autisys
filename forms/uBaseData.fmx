@@ -1,0 +1,481 @@
+object fBaseData: TfBaseData
+  Left = 0
+  Top = 0
+  BiDiMode = bdRightToLeft
+  BorderIcons = [biSystemMenu]
+  BorderStyle = Single
+  Caption = #1578#1606#1592#1740#1605#1575#1578' '#1662#1575#1740#1607
+  ClientHeight = 540
+  ClientWidth = 700
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop, iPhone, iPad]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object btnClose: TButton
+    Align = Left
+    StyledSettings = [FontColor]
+    Margins.Left = 2.000000000000000000
+    Margins.Bottom = 2.000000000000000000
+    Position.X = 2.000000000000000000
+    Size.Width = 43.000000000000000000
+    Size.Height = 538.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Text = #1576#1587#1578#1606
+    TextSettings.Font.Family = 'IRANSansWebFaNum'
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    OnClick = btnCloseClick
+  end
+  object tcMain: TTabControl
+    Align = Client
+    Size.Width = 655.000000000000000000
+    Size.Height = 540.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 0
+    TabOrder = 1
+    TabPosition = PlatformDefault
+    Sizes = (
+      655s
+      508s)
+    object tbTherapists: TTabItem
+      CustomIcon = <>
+      TextSettings.Font.Family = 'IRANSansWebFaNum'
+      TextSettings.Font.Size = 14.000000000000000000
+      StyledSettings = [Style, FontColor]
+      IsSelected = True
+      Size.Width = 120.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = #1583#1585#1605#1575#1606#1711#1585#1575#1606
+      object lblFName: TLabel
+        Anchors = [akTop, akRight]
+        StyledSettings = [FontColor]
+        Position.X = 580.000000000000000000
+        Position.Y = 20.000000000000000000
+        Size.Width = 24.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Text = #1606#1575#1605
+        TabOrder = 0
+      end
+      object eFName: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Anchors = [akTop, akRight]
+        TabOrder = 1
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Position.X = 380.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        StyledSettings = [FontColor]
+      end
+      object lblLName: TLabel
+        Anchors = [akTop, akRight]
+        StyledSettings = [FontColor]
+        Position.X = 340.000000000000000000
+        Position.Y = 20.000000000000000000
+        Size.Width = 30.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Text = #1606#1575#1605' '#1582#1575#1606#1608#1575#1583#1711#1740
+        TabOrder = 2
+      end
+      object eLName: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Anchors = [akTop, akRight]
+        TabOrder = 3
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Position.X = 130.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        StyledSettings = [FontColor]
+      end
+      object lblPhone: TLabel
+        Anchors = [akTop, akRight]
+        StyledSettings = [FontColor]
+        Position.X = 580.000000000000000000
+        Position.Y = 56.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Text = #1588#1605#1575#1585#1607' '#1578#1605#1575#1587
+        TabOrder = 4
+      end
+      object ePhone: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Anchors = [akTop, akRight]
+        TabOrder = 5
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Position.X = 380.000000000000000000
+        Position.Y = 52.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        StyledSettings = [FontColor]
+      end
+      object lblBirth: TLabel
+        Anchors = [akTop, akRight]
+        StyledSettings = [FontColor]
+        Position.X = 580.000000000000000000
+        Position.Y = 92.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Text = #1578#1575#1585#1740#1582' '#1578#1608#1604#1583
+        TabOrder = 6
+      end
+      object eBirthYear: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Anchors = [akTop, akRight]
+        TabOrder = 7
+        MaxLength = 4
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Position.X = 460.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        StyledSettings = [FontColor]
+      end
+      object eBirthMonth: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Anchors = [akTop, akRight]
+        TabOrder = 8
+        MaxLength = 2
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Position.X = 380.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        StyledSettings = [FontColor]
+      end
+      object eBirthDay: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Anchors = [akTop, akRight]
+        TabOrder = 9
+        MaxLength = 2
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Position.X = 300.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        StyledSettings = [FontColor]
+      end
+      object lblAddress: TLabel
+        Anchors = [akTop, akRight]
+        StyledSettings = [FontColor]
+        Position.X = 580.000000000000000000
+        Position.Y = 128.000000000000000000
+        Size.Width = 46.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Text = #1570#1583#1585#1587
+        TabOrder = 10
+      end
+      object mAddress: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        StyledSettings = [FontColor]
+        TextSettings.Font.Family = 'IRANSansWebFaNum'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+        TextSettings.WordWrap = True
+        Anchors = [akTop, akRight]
+        Position.X = 80.000000000000000000
+        Position.Y = 124.000000000000000000
+        Size.Width = 490.000000000000000000
+        Size.Height = 70.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 11
+        Viewport.Width = 486.000000000000000000
+        Viewport.Height = 66.000000000000000000
+      end
+      object NavigatorTherapists: TBindNavigator
+        Align = Bottom
+        Position.Y = 458.000000000000000000
+        Size.Width = 655.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 12
+        DataSource = BindSourceTherapists
+        VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbRefresh]
+        xRadius = 4.000000000000000000
+        yRadius = 4.000000000000000000
+      end
+      object GridPanelLayout1: TGridPanelLayout
+        Align = Bottom
+        Position.Y = 408.000000000000000000
+        Size.Width = 655.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 13
+        ColumnCollection = <
+          item
+            Value = 20.000000000000000000
+          end
+          item
+            Value = 20.000000000000000000
+          end
+          item
+            Value = 20.000000000000000000
+          end
+          item
+            Value = 20.000000000000000000
+          end
+          item
+            Value = 20.000000000000000000
+          end>
+        ControlCollection = <
+          item
+            Column = 0
+            Control = btnCancel
+            Row = 0
+          end
+          item
+            Column = 1
+            Control = btnDelete
+            Row = 0
+          end
+          item
+            Column = 2
+            Control = btnSave
+            Row = 0
+          end
+          item
+            Column = 3
+            Control = btnEdit
+            Row = 0
+          end
+          item
+            Column = 4
+            Control = btnAdd
+            Row = 0
+          end>
+        RowCollection = <
+          item
+            Value = 100.000000000000000000
+          end>
+        object btnCancel: TButton
+          Action = actCancel
+          Align = Client
+          Enabled = True
+          StyledSettings = [FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 121.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          Text = #1575#1606#1589#1585#1575#1601
+          TextSettings.Font.Family = 'IRANSansWebFaNum'
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+        object btnDelete: TButton
+          Action = actDelete
+          Align = Client
+          Enabled = True
+          StyledSettings = [FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 121.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          Text = #1581#1584#1601
+          TextSettings.Font.Family = 'IRANSansWebFaNum'
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+        object btnSave: TButton
+          Action = actPost
+          Align = Client
+          Enabled = True
+          StyledSettings = [FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 121.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = #1584#1582#1740#1585#1607
+          TextSettings.Font.Family = 'IRANSansWebFaNum'
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+        object btnEdit: TButton
+          Action = actEdit
+          Align = Client
+          Enabled = True
+          StyledSettings = [FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 121.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = #1608#1740#1585#1575#1740#1588
+          TextSettings.Font.Family = 'IRANSansWebFaNum'
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+        object btnAdd: TButton
+          Action = actInsert
+          Align = Client
+          Enabled = True
+          StyledSettings = [FontColor]
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 121.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = #1580#1583#1740#1583
+          TextSettings.Font.Family = 'IRANSansWebFaNum'
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        end
+      end
+    end
+  end
+  object BindSourceTherapists: TBindSourceDB
+    ScopeMappings = <>
+    Left = 80
+    Top = 496
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 160
+    Top = 496
+    object lnkFName: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceTherapists
+      FieldName = 'FirstName'
+      Control = eFName
+      Track = False
+    end
+    object lnkLName: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceTherapists
+      FieldName = 'LastName'
+      Control = eLName
+      Track = False
+    end
+    object lnkPhone: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceTherapists
+      FieldName = 'Phone'
+      Control = ePhone
+      Track = False
+    end
+    object lnkBirthYear: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceTherapists
+      FieldName = 'BirthYear'
+      Control = eBirthYear
+      Track = False
+    end
+    object lnkBirthMonth: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceTherapists
+      FieldName = 'BirthMonth'
+      Control = eBirthMonth
+      Track = False
+    end
+    object lnkBirthDay: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceTherapists
+      FieldName = 'BirthDay'
+      Control = eBirthDay
+      Track = False
+    end
+    object lnkAddress: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceTherapists
+      FieldName = 'Address'
+      Control = mAddress
+      Track = False
+    end
+  end
+  object ActionList1: TActionList
+    Left = 240
+    Top = 496
+    object actInsert: TFMXBindNavigateInsert
+      Category = 'LiveBindings'
+      Text = #1580#1583#1740#1583
+      DataSource = BindSourceTherapists
+    end
+    object actDelete: TFMXBindNavigateDelete
+      Category = 'LiveBindings'
+      Text = #1581#1584#1601
+      DataSource = BindSourceTherapists
+    end
+    object actEdit: TFMXBindNavigateEdit
+      Category = 'LiveBindings'
+      Text = #1608#1740#1585#1575#1740#1588
+      DataSource = BindSourceTherapists
+    end
+    object actPost: TFMXBindNavigatePost
+      Category = 'LiveBindings'
+      Text = #1584#1582#1740#1585#1607
+      DataSource = BindSourceTherapists
+    end
+    object actCancel: TFMXBindNavigateCancel
+      Category = 'LiveBindings'
+      Text = #1575#1606#1589#1585#1575#1601
+      DataSource = BindSourceTherapists
+    end
+  end
+  object dsTherapists: TDataSource
+    OnStateChange = dsTherapistsStateChange
+    Left = 320
+    Top = 496
+  end
+end

@@ -10,6 +10,7 @@ object fLogin: TfLogin
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop, iPhone, iPad]
+  OnShow = FormShow
   DesignerMasterStyle = 0
   object Panel1: TPanel
     Align = Top
@@ -46,6 +47,7 @@ object fLogin: TfLogin
       Size.Height = 52.000000000000000000
       Size.PlatformDefault = False
       StyledSettings = [FontColor]
+      OnExit = eUserNameExit
     end
   end
   object Panel2: TPanel
