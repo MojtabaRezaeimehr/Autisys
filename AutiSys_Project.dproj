@@ -175,6 +175,14 @@
         <DCCReference Include="utils\uPatientRepository.pas"/>
         <DCCReference Include="utils\uPatientRepository.FireDAC.pas"/>
         <DCCReference Include="utils\uPatientService.pas"/>
+        <DCCReference Include="utils\uDbMigration.pas"/>
+        <DCCReference Include="data\dmBaseData.pas">
+            <Form>dmBaseData</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="forms\uBaseData.pas">
+            <Form>fBaseData</Form>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

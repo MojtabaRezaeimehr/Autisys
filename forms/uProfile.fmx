@@ -56,7 +56,7 @@ object fProfile: TfProfile
         Size.Width = 699.000000000000000000
         Size.Height = 533.000000000000000000
         Size.PlatformDefault = False
-        TabIndex = 1
+        TabIndex = 0
         TabOrder = 0
         TabPosition = PlatformDefault
         Sizes = (
@@ -71,7 +71,7 @@ object fProfile: TfProfile
           TextSettings.Font.Family = 'IRANSansWebFaNum'
           TextSettings.Font.Size = 14.000000000000000000
           StyledSettings = [Style, FontColor]
-          IsSelected = False
+          IsSelected = True
           Size.Width = 66.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
@@ -266,7 +266,7 @@ object fProfile: TfProfile
             Anchors = [akTop, akRight]
             StyledSettings = [FontColor]
             Position.X = 601.000000000000000000
-            Position.Y = 336.000000000000000000
+            Position.Y = 321.000000000000000000
             Size.Width = 93.000000000000000000
             Size.Height = 17.000000000000000000
             Size.PlatformDefault = False
@@ -514,13 +514,13 @@ object fProfile: TfProfile
             TextSettings.WordWrap = True
             Anchors = [akTop, akRight]
             Position.X = 105.000000000000000000
-            Position.Y = 336.000000000000000000
+            Position.Y = 321.000000000000000000
             Size.Width = 488.000000000000000000
-            Size.Height = 43.000000000000000000
+            Size.Height = 97.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 14
             Viewport.Width = 484.000000000000000000
-            Viewport.Height = 39.000000000000000000
+            Viewport.Height = 93.000000000000000000
           end
           object GridPanelLayout1: TGridPanelLayout
             Align = Bottom
@@ -711,11 +711,11 @@ object fProfile: TfProfile
             Position.X = 105.000000000000000000
             Position.Y = 254.000000000000000000
             Size.Width = 488.000000000000000000
-            Size.Height = 66.000000000000000000
+            Size.Height = 59.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 13
             Viewport.Width = 484.000000000000000000
-            Viewport.Height = 62.000000000000000000
+            Viewport.Height = 55.000000000000000000
           end
           object NavigatorBindSourceDB11: TBindNavigator
             Align = Bottom
@@ -766,7 +766,7 @@ object fProfile: TfProfile
           TextSettings.Font.Family = 'IRANSansWebFaNum'
           TextSettings.Font.Size = 14.000000000000000000
           StyledSettings = [Style, FontColor]
-          IsSelected = True
+          IsSelected = False
           Size.Width = 182.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
@@ -1247,11 +1247,11 @@ object fProfile: TfProfile
             Position.X = 80.000000000000000000
             Position.Y = 266.000000000000000000
             Size.Width = 508.000000000000000000
-            Size.Height = 103.000000000000000000
+            Size.Height = 63.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 11
             Viewport.Width = 504.000000000000000000
-            Viewport.Height = 99.000000000000000000
+            Viewport.Height = 59.000000000000000000
           end
           object mParentNotes: TMemo
             Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
@@ -1263,19 +1263,19 @@ object fProfile: TfProfile
             TextSettings.WordWrap = True
             Anchors = [akTop, akRight]
             Position.X = 80.000000000000000000
-            Position.Y = 373.000000000000000000
+            Position.Y = 337.000000000000000000
             Size.Width = 508.000000000000000000
-            Size.Height = 43.000000000000000000
+            Size.Height = 79.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 12
             Viewport.Width = 504.000000000000000000
-            Viewport.Height = 39.000000000000000000
+            Viewport.Height = 75.000000000000000000
           end
           object Label68: TLabel
             Anchors = [akTop, akRight]
             StyledSettings = [FontColor]
-            Position.X = 592.000000000000000000
-            Position.Y = 373.000000000000000000
+            Position.X = 596.000000000000000000
+            Position.Y = 337.000000000000000000
             Size.Width = 93.000000000000000000
             Size.Height = 17.000000000000000000
             Size.PlatformDefault = False
