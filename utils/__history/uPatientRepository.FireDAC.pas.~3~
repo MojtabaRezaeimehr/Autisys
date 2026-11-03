@@ -1,0 +1,44 @@
+unit uPatientRepository.FireDAC;
+
+interface
+
+uses
+  uPatientRepository,
+  FireDAC.Comp.Client,
+  FireDAC.Stan.Param;
+
+type
+  TFireDACPatientRepository = class(TInterfacedObject, IPatientRepository)
+  private
+    FConnection: TFDConnection;
+  public
+    constructor Create(AConnection: TFDConnection);
+    function GetPatientCount: Integer;
+  end;
+
+implementation
+
+{ TFireDACPatientRepository }
+
+constructor TFireDACPatientRepository.Create(AConnection: TFDConnection);
+begin
+  inherited Create;
+  FConnection := AConnection;
+end;
+
+function TFireDACPatientRepository.GetPatientCount: Integer;
+var
+  Query: TFDQuery;
+begin
+  Query := TFDQuery.Create(nil);
+  try
+    Query.Connection := FConnection;
+    Query.SQL.Text := 'SELECT COUNT(*) FROM Patients';
+    Query.Open;
+    Result := Query.Fields[0].AsInteger;
+  finally
+    Query.Free;
+  end;
+end;
+
+end.

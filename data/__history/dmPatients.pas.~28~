@@ -1,12 +1,13 @@
-unit dmPatients;
+﻿unit dmPatients;
 
 interface
 
 uses
-  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  System.SysUtils, System.Classes, Winapi.Windows,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client,Fmx.Dialogs;
 
 type
   TdmPatints = class(TDataModule)
@@ -28,23 +29,40 @@ type
     fQryPatientsSupportTypeId: TIntegerField;
     fQryPatientsNotes: TWideMemoField;
     fQryIranProvinces: TFDQuery;
-    dsProvinces: TDataSource;
     fQryIranProvincesProvinceName: TWideStringField;
     fQryIranProvincesId: TFDAutoIncField;
     fQryInsuranceTypes: TFDQuery;
-    dsInsuranceTypes: TDataSource;
     fQryInsuranceTypesId: TFDAutoIncField;
     fQryInsuranceTypesInsuranceName: TWideStringField;
-    dsSupportTypes: TDataSource;
     fQrySupportTypes: TFDQuery;
     fQrySupportTypesId: TFDAutoIncField;
     fQrySupportTypesSupportName: TWideStringField;
-    dsDisorderTypes: TDataSource;
     fQryDisorderTypes: TFDQuery;
     fQryDisorderTypesId: TFDAutoIncField;
     fQryDisorderTypesDisorderName: TWideStringField;
-    dsPatients: TDataSource;
     fQryPatientsProvinceId: TIntegerField;
+    fQryParents: TFDQuery;
+    fQryParentsId: TFDAutoIncField;
+    fQryParentsPatientId: TIntegerField;
+    fQryParentsParentTypeId: TIntegerField;
+    fQryParentsFirstName: TWideStringField;
+    fQryParentsLastName: TWideStringField;
+    fQryParentsAge: TByteField;
+    fQryParentsNationalCode: TStringField;
+    fQryParentsJob: TWideStringField;
+    fQryParentsMonthlyIncome: TFMTBCDField;
+    fQryParentsWorkAddress: TWideStringField;
+    fQryParentsNotes: TWideMemoField;
+    fQryParentsPhone: TStringField;
+    fQryPatientsDisorderTypeId: TIntegerField;
+    fQryParentsHasDisorder: TBooleanField;
+    fQryParentsDisorderTypeId: TIntegerField;
+    fdQryParentTypes: TFDQuery;
+    fdQryParentTypesId: TFDAutoIncField;
+    fdQryParentTypesTypeName: TWideStringField;
+    fQryPatientNames: TFDQuery;
+    fQryPatientNamesid: TFDAutoIncField;
+    fQryPatientNamesFullName: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -66,12 +84,25 @@ uses dmServer;
 procedure TdmPatints.DataModuleCreate(Sender: TObject);
 var
   i: integer;
+  Q: TFDQuery;
 begin
-  for i := 0 to ComponentCount do
-  begin
+  for i := 0 to ComponentCount - 1 do
     if Components[i] is TFDQuery then
-      (Components[i] as TFDQuery).Active := true;
-  end;
+    begin
+      Q := Components[i] as TFDQuery;
+      Q.Connection := dmServer_.FdServerConnection;
+      try
+        dmServer_.FdServerConnection.Close;
+        dmServer_.FdServerConnection.Open;
+        showmessage(q.Name);
+        Q.Active := True;
+      except
+        on E: Exception do
+          { log silently — do not crash the whole module on one bad query }
+          OutputDebugString(PChar('dmPatients: failed to open ' + Q.Name + ': '
+            + E.Message));
+      end;
+    end;
 end;
 
 end.

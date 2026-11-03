@@ -1,4 +1,4 @@
-unit dmEvents;
+﻿unit dmEvents;
 
 interface
 
@@ -36,6 +36,8 @@ begin
     if Components[i] is TFDQuery then
     begin
       (Components[i] as TFDQuery).Connection := dmServer_.FdServerConnection;
+      // Fetch everything at open so no cursor stays open on the shared connection
+      (Components[i] as TFDQuery).FetchOptions.Mode := fmAll;
       (Components[i] as TFDQuery).Active := True;
     end;
   end;

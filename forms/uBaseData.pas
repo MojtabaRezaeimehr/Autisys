@@ -86,7 +86,8 @@ end;
 
 procedure TfBaseData.dsTherapistsStateChange(Sender: TObject);
 begin
-  if dsTherapists.State = dsBrowse then
+  if Assigned(dmTherapy_) and Assigned(dmTherapy_.fQryTherapists) and
+    dmTherapy_.fQryTherapists.Active then
   begin
     dmTherapy_.fQryTherapists.Close;
     dmTherapy_.fQryTherapists.Open;

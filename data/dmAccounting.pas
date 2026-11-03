@@ -1,4 +1,4 @@
-unit dmAccounting;
+﻿unit dmAccounting;
 
 interface
 
@@ -58,6 +58,8 @@ begin
     begin
       Q := Components[i] as TFDQuery;
       Q.Connection := dmServer_.FdServerConnection;
+      // Fetch everything at open so no cursor stays open on the shared connection
+      Q.FetchOptions.Mode := fmAll;
       try
         Q.Active := True;
       except

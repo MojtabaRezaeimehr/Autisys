@@ -1,4 +1,4 @@
-unit dmTherapy;
+﻿unit dmTherapy;
 
 interface
 
@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Comp.UI, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client,FMX.Dialogs;
 
 type
   TdmTherapy_ = class(TDataModule)
@@ -95,6 +95,9 @@ begin
     begin
       Q := Components[i] as TFDQuery;
       Q.Connection := dmServer_.FdServerConnection;
+      // Fetch everything at open so no cursor stays open on the shared connection
+      Q.FetchOptions.Mode := fmAll;
+//      showmessage(q.Name);
       try
         Q.Active := True;
       except

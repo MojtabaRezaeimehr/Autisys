@@ -169,7 +169,7 @@ object fMainScreen: TfMainScreen
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.Font.StyleExt = {00070000000000000004000000}
       Text = #1705#1583' '#1605#1604#1740
-      TabOrder = 37
+      TabOrder = 38
     end
     object btnSearch: TButton
       Align = Right
@@ -182,7 +182,7 @@ object fMainScreen: TfMainScreen
       Size.Width = 94.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 38
+      TabOrder = 39
       Text = #1580#1587#1578#1580#1608
       TextSettings.Font.Family = 'IRANSansWebFaNum'
       TextSettings.Font.Size = 14.000000000000000000
@@ -195,12 +195,12 @@ object fMainScreen: TfMainScreen
       Size.Width = 210.000000000000000000
       Size.Height = 72.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 39
+      TabOrder = 40
     end
     object edtNationalCode: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Align = Right
-      TabOrder = 40
+      TabOrder = 41
       MaxLength = 10
       FilterChar = '0123456789'
       TextSettings.Font.Family = 'IRANSansWebFaNum'

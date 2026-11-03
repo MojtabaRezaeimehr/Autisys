@@ -49,14 +49,16 @@ begin
     dmServer_.FdServerConnection.Params.Values['User_Name'] := 'sa';
     dmServer_.FdServerConnection.Params.Values['Password']  := 'amf@sql2022';
     dmServer_.FdServerConnection.LoginPrompt := False;
+    // NOTE: MARS deliberately disabled. All queries use fmAll fetch (full fetch,
+    // cursor released at open), so multiple active result sets are not needed
+    // and MARS itself can trigger 'Connection is busy' with ODBC Driver 17.
     try
       dmServer_.FdServerConnection.Connected := True;
     except
       on E: Exception do
       begin
         ShowMessage('خطا در اتصال به پایگاه داده:' + sLineBreak + E.Message);
-        dmServer_.Free;
-        Exit;
+        Exit; // dmServer_ is freed by the outer finally — do NOT free it here
       end;
     end;
 

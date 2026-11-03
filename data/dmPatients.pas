@@ -1,4 +1,4 @@
-unit dmPatients;
+﻿unit dmPatients;
 
 interface
 
@@ -7,7 +7,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client,Fmx.Dialogs;
 
 type
   TdmPatints = class(TDataModule)
@@ -86,17 +86,23 @@ var
   i: integer;
   Q: TFDQuery;
 begin
-  for i := 0 to ComponentCount-1 do
+  for i := 0 to ComponentCount - 1 do
     if Components[i] is TFDQuery then
     begin
       Q := Components[i] as TFDQuery;
       Q.Connection := dmServer_.FdServerConnection;
+      // Fetch everything at open so no cursor stays open on the shared connection
+      Q.FetchOptions.Mode := fmAll;
       try
+//        dmServer_.FdServerConnection.Close;
+//        dmServer_.FdServerConnection.Open;
+//        showmessage(q.Name);
         Q.Active := True;
       except
         on E: Exception do
           { log silently — do not crash the whole module on one bad query }
-          OutputDebugString(PChar('dmPatients: failed to open ' + Q.Name + ': ' + E.Message));
+          OutputDebugString(PChar('dmPatients: failed to open ' + Q.Name + ': '
+            + E.Message));
       end;
     end;
 end;

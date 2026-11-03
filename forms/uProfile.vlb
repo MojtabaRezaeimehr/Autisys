@@ -1069,3 +1069,27 @@ Visible=False
 [BindSourceDB27]
 Coordinates=690,2870,113,58
 
+[BindNavigator2]
+Coordinates=187,1,103,58
+
+[NavigatorBindSourceDB11]
+Coordinates=359,217,168,58
+
+[NavigatorBindSourceDB25]
+Coordinates=636,221,168,58
+
+[NavigatorBindSourceDB23]
+Coordinates=636,298,168,58
+
+[NavigatorBindSourceDB13]
+Coordinates=68,195,168,58
+
+[BindNavigator1]
+Coordinates=636,144,103,58
+
+[NavigatorBindSourceDB19]
+Coordinates=0,0,168,58
+
+[NavigatorBindSourceDB1]
+Coordinates=70,328,161,58
+

@@ -282,7 +282,9 @@ object dmPatints: TdmPatints
   object fQryPatientNames: TFDQuery
     Connection = dmServer_.FdServerConnection
     SQL.Strings = (
-      'SELECT id,FirstName+'#39' '#39'+LastName as FullName FROM Patients'
+      
+        'SELECT id,FirstName+'#39' '#39'+LastName as FullName FROM [AutiSys].[dbo' +
+        '].[Patients]'
       'ORDER BY FirstName,LastName')
     Left = 104
     Top = 560

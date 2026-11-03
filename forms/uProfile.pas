@@ -385,6 +385,8 @@ type
     FdsTests: TDataSource;
     FdsAccounting: TDataSource;
     procedure SetTabInputsEnabled(AParent: TFmxObject; AEnabled: Boolean);
+    procedure SetGridColumnHeaders(AGrid: TStringGrid;
+      const AHeaders: array of string);
   public
     procedure OpenForNewPatient;
     procedure OpenForNewSession;
@@ -405,15 +407,26 @@ uses dmTherapy, dmPatients, dmAccounting, dmServer, uJalaliCalendar, uFunctions;
 
 procedure TfProfile.btnCloseClick(Sender: TObject);
 begin
-  if dmPatints.fQryPatients.State in [dsInsert, dsEdit] then
-    dmPatints.fQryPatients.Cancel;
-  if dmPatints.fQryParents.State in [dsInsert, dsEdit] then
-    dmPatints.fQryParents.Cancel;
-  if dmTherapy_.fQrySessions.State in [dsInsert, dsEdit] then
-    dmTherapy_.fQrySessions.Cancel;
-  if dmTherapy_.fQryPriodicalTests.State in [dsInsert, dsEdit] then
-    dmTherapy_.fQryPriodicalTests.Cancel;
-  if dmAccounting_.fQryTransactions.State in [dsInsert, dsEdit] then
+  if Assigned(dmPatints) then
+  begin
+    if dmPatints.fQryPatients.Active and
+      (dmPatints.fQryPatients.State in [dsInsert, dsEdit]) then
+      dmPatints.fQryPatients.Cancel;
+    if dmPatints.fQryParents.Active and
+      (dmPatints.fQryParents.State in [dsInsert, dsEdit]) then
+      dmPatints.fQryParents.Cancel;
+  end;
+  if Assigned(dmTherapy_) then
+  begin
+    if dmTherapy_.fQrySessions.Active and
+      (dmTherapy_.fQrySessions.State in [dsInsert, dsEdit]) then
+      dmTherapy_.fQrySessions.Cancel;
+    if dmTherapy_.fQryPriodicalTests.Active and
+      (dmTherapy_.fQryPriodicalTests.State in [dsInsert, dsEdit]) then
+      dmTherapy_.fQryPriodicalTests.Cancel;
+  end;
+  if Assigned(dmAccounting_) and dmAccounting_.fQryTransactions.Active and
+    (dmAccounting_.fQryTransactions.State in [dsInsert, dsEdit]) then
     dmAccounting_.fQryTransactions.Cancel;
   Close;
 end;
@@ -473,6 +486,16 @@ begin
   btnDelete_Patient.Enabled := not Editing;
   btnSave_Patient.Enabled := Editing;
   btnCancel_Patient.Enabled := Editing;
+end;
+
+procedure TfProfile.SetGridColumnHeaders(AGrid: TStringGrid;
+  const AHeaders: array of string);
+var
+  I: Integer;
+begin
+  for I := 0 to Length(AHeaders) - 1 do
+    if I < AGrid.ColumnCount then
+      AGrid.Columns[I].Header := AHeaders[I];
 end;
 
 procedure TfProfile.dsParentsStateChange(Sender: TObject);
@@ -565,19 +588,14 @@ begin
   BindSourceDB27.DataSet := dmAccounting_.fQryTransactionsRep;
 
   // Set Persian column headers for sgTherapyResume
-  sgTherapyResume.Columns[0].Header := 'نام توانجو';
-  sgTherapyResume.Columns[1].Header := 'نوع درمان';
-  sgTherapyResume.Columns[2].Header := 'درمانگر';
-  sgTherapyResume.Columns[3].Header := 'تاریخ جلسه';
-  sgTherapyResume.Columns[4].Header := 'ساعت شروع';
-  sgTherapyResume.Columns[5].Header := 'ساعت پایان';
+  // ستون‌ها توسط LinkGridToDataSource بعد از باز شدن دیتاست ساخته می‌شوند؛
+  // پس فقط اگر ستون وجود داشت عنوان‌ها را تنظیم می‌کنیم (جلوگیری از خطای out of bounds)
+  SetGridColumnHeaders(sgTherapyResume,
+    ['نام توانجو', 'نوع درمان', 'درمانگر', 'تاریخ جلسه', 'ساعت شروع', 'ساعت پایان']);
 
   // Set Persian column headers for sgTransactionList
-  sgTransactionList.Columns[0].Header := 'نام توانجو';
-  sgTransactionList.Columns[1].Header := 'مبلغ';
-  sgTransactionList.Columns[2].Header := 'نوع تراکنش';
-  sgTransactionList.Columns[3].Header := 'تاریخ';
-  sgTransactionList.Columns[4].Header := 'توضیحات';
+  SetGridColumnHeaders(sgTransactionList,
+    ['نام توانجو', 'مبلغ', 'نوع تراکنش', 'تاریخ', 'توضیحات']);
 
   // Wire state-change handlers via TDataSource wrappers
   FdsParents := TDataSource.Create(Self);
@@ -676,15 +694,26 @@ end;
 
 procedure TfProfile.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  if dmPatints.fQryPatients.State in [dsInsert, dsEdit] then
-    dmPatints.fQryPatients.Cancel;
-  if dmPatints.fQryParents.State in [dsInsert, dsEdit] then
-    dmPatints.fQryParents.Cancel;
-  if dmTherapy_.fQrySessions.State in [dsInsert, dsEdit] then
-    dmTherapy_.fQrySessions.Cancel;
-  if dmTherapy_.fQryPriodicalTests.State in [dsInsert, dsEdit] then
-    dmTherapy_.fQryPriodicalTests.Cancel;
-  if dmAccounting_.fQryTransactions.State in [dsInsert, dsEdit] then
+  if Assigned(dmPatints) then
+  begin
+    if dmPatints.fQryPatients.Active and
+      (dmPatints.fQryPatients.State in [dsInsert, dsEdit]) then
+      dmPatints.fQryPatients.Cancel;
+    if dmPatints.fQryParents.Active and
+      (dmPatints.fQryParents.State in [dsInsert, dsEdit]) then
+      dmPatints.fQryParents.Cancel;
+  end;
+  if Assigned(dmTherapy_) then
+  begin
+    if dmTherapy_.fQrySessions.Active and
+      (dmTherapy_.fQrySessions.State in [dsInsert, dsEdit]) then
+      dmTherapy_.fQrySessions.Cancel;
+    if dmTherapy_.fQryPriodicalTests.Active and
+      (dmTherapy_.fQryPriodicalTests.State in [dsInsert, dsEdit]) then
+      dmTherapy_.fQryPriodicalTests.Cancel;
+  end;
+  if Assigned(dmAccounting_) and dmAccounting_.fQryTransactions.Active and
+    (dmAccounting_.fQryTransactions.State in [dsInsert, dsEdit]) then
     dmAccounting_.fQryTransactions.Cancel;
 end;
 
@@ -692,6 +721,8 @@ procedure TfProfile.OpenForNewPatient;
 begin
   tcAllTabs.TabIndex := 0; // tbGeneralInfo
   tcGeneralInfo.TabIndex := 0; // tbPatient
+  if not dmPatints.fQryPatients.Active then
+    dmPatints.fQryPatients.Open;
   dmPatints.fQryPatients.Insert;
 end;
 
@@ -699,6 +730,8 @@ procedure TfProfile.OpenForNewSession;
 begin
   tcAllTabs.TabIndex := 1; // tbTherapy
   tcTherapy.TabIndex := 1; // tbNewTherapySession
+  if not dmTherapy_.fQrySessions.Active then
+    dmTherapy_.fQrySessions.Open;
   dmTherapy_.fQrySessions.Insert;
 end;
 
@@ -706,6 +739,8 @@ procedure TfProfile.OpenForNewTransaction;
 begin
   tcAllTabs.TabIndex := 2; // tbAccounting
   tcAccounting.TabIndex := 1; // tbNewTransaction
+  if not dmAccounting_.fQryTransactions.Active then
+    dmAccounting_.fQryTransactions.Open;
   dmAccounting_.fQryTransactions.Insert;
 end;
 

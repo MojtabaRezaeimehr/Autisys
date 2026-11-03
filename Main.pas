@@ -1,5 +1,5 @@
-﻿unit Main;
-
+﻿
+unit Main;
 interface
 
 uses
@@ -152,15 +152,12 @@ var
 begin
   sNationalCode := Trim(edtNationalCode.Text);
 
-  // اطمینان از ورود مقدار
-  if sNationalCode <> '' then
-  begin
-    // ------------------------------------------------------------------
-    // 1. اجرای کوئری با استفاده از RunSQLQuery
-    // ------------------------------------------------------------------
-    Q := RunSQLQuery(dmServer_.FdServerConnection,
-      'SELECT Id FROM Patients WHERE NationalCode = :NationalCode',
-      [sNationalCode]); // آرایه‌ی const
+  if sNationalCode = '' then
+    Exit; // leave the whole procedure, not just this block
+
+  Q := RunSQLQuery(dmServer_.FdServerConnection,
+    'SELECT Id FROM Patients WHERE NationalCode = :NationalCode',
+    [sNationalCode]); // آرایه‌ی const
 
     try
       // اگر رکوردی برگشت نداد، پیام خطا
@@ -175,20 +172,12 @@ begin
     finally
       Q.Free; // آزادسازی شیء بعد از اتمام
     end;
-  end;
 
   // ------------------------------------------------------------------
   // 2. نمایش فرم پروفایل بیمار
   // ------------------------------------------------------------------
   with TfProfile.Create(nil) do
     try
-      // Guard: PatientID must be valid
-      if VarIsNull(PatientID) or VarIsEmpty(PatientID) then
-      begin
-        ShowMessage('PatientID is empty - cannot locate records.');
-        Exit;
-      end;
-
       // Guard: data modules must exist
       if not Assigned(dmPatints) then
       begin
